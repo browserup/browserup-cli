@@ -1,0 +1,246 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "properties": {
+    "images": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "image": {
+            "type": "string"
+          },
+          "registry": {
+            "type": "string"
+          }
+        },
+        "required": ["name"]
+      }
+    },
+    "reports": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "y1": {
+            "type": "string"
+          },
+          "y2": {
+            "type": "string"
+          },
+          "limit": {
+            "type": "integer"
+          },
+          "offset": {
+            "type": "integer"
+          },
+          "type": {
+            "type": "string"
+          },
+          "range": {
+            "type": "object",
+            "properties": {
+              "start": {
+                "type": "string"
+              },
+              "end": {
+                "type": "string"
+              }
+            }
+          },
+          "cards": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "type": {
+                  "type": "string"
+                },
+                "metrics": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "metric": {
+                        "type": "string"
+                      },
+                      "group_by": {
+                        "type": "string"
+                      },
+                      "round": {
+                        "type": "boolean"
+                      },
+                      "sort_by": {
+                        "type": "string"
+                      },
+                      "filter_if_zero": {
+                        "type": "boolean"
+                      },
+                      "display_name": {
+                        "type": "string"
+                      },
+                      "check": {
+                        "type": "object",
+                        "properties": {
+                          "<": {
+                            "type": "number"
+                          },
+                          "<=": {
+                            "type": "number"
+                          },
+                          ">": {
+                            "type": "number"
+                          },
+                          ">=": {
+                            "type": "number"
+                          },
+                          "=": {
+                            "type": "number"
+                          }
+                        }
+                      }
+                    },
+                    "required": ["metric"]
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["name", "title"]
+      }
+    },
+    "scenario": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        },
+        "total_users": {
+          "type": "integer"
+        },
+        "stop_after": {
+          "type": "string"
+        },
+        "ramp": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "ramp_to": {
+                "type": "string"
+              },
+              "over": {
+                "type": "string"
+              }
+            }
+          }
+        },
+        "profiles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "image": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "allocation": {
+                "type": "string"
+              },
+              "region": {
+                "type": "string"
+              },
+              "iteration_delay": {
+                "type": "string"
+              },
+              "reset_session_after_iteration": {
+                "type": "boolean"
+              },
+              "think_time": {
+                "type": "string"
+              },
+              "artifact_dir": {
+                "type": "string"
+              },
+              "proxy_config": {
+                "type": "object",
+                "properties": {
+                  "filter_images": {
+                    "type": "boolean"
+                  },
+                  "filter_multimedia": {
+                    "type": "boolean"
+                  },
+                  "filter_common_third_party_js": {
+                    "type": "boolean"
+                  },
+                  "restrict_to_domains_matching": {
+                    "type": "boolean"
+                  },
+                  "use_custom_config": {
+                    "type": "boolean"
+                  },
+                  "custom_config_path": {
+                    "type": "string"
+                  }
+                }
+              },
+              "databank": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "path": {
+                    "type": "string"
+                  }
+                },
+                "required": ["name", "path"]
+              },
+              "command": {
+                "type": "string"
+              },
+              "vus_per_vcpu": {
+                "type": "integer"
+              }
+            },
+            "required": ["name", "command"]
+          }
+        }
+      },
+      "required": ["name", "total_users"]
+    },
+    "settings": {
+      "type": "object",
+      "properties": {
+        "cluster_type": {
+          "type": "string",
+          "enum": ["local", "aws"]
+        },
+        "load_generators": {
+          "type": "object",
+          "properties": {
+            "cores": {
+              "type": "string"
+            },
+            "memory": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

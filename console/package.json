@@ -1,0 +1,25 @@
+{
+  "name": "browserup-console",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/browserup/browserup.git"
+  },
+  "author": "Eric Beland (ebeland@browserup.com)",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "blessed": "0.1.54",
+    "colors": "^1.1.2"
+  },
+  "dependencies": {
+    "blessed-contrib": "^4.8.20",
+    "chalk": "^5.2.0",
+    "needle": "^2.5.2",
+    "request": "^2.88.0"
+  }
+}
