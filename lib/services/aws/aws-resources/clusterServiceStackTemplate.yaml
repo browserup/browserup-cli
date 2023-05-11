@@ -28,7 +28,7 @@ Parameters:
   MinionsKeyName:
     Type: String
     Description: >
-      Optional key pair name to use for minions cluster, in case it doesn"t exist in cluster it will be ignored.
+      Optional key pair name to use for minions cluster, in case it doesn't exist in cluster it will be ignored.
     Default: ""
   AwsAccessKeyId:
     Type: String
