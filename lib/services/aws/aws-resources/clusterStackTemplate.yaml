@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: >
   Browserup cluster
 Parameters:
@@ -17,7 +17,7 @@ Parameters:
     Description: >
       Optional - Specifies the name of an existing Amazon EC2 key pair
       to enable SSH access to the EC2 instances in Browserup cluster (for debugging purpose)
-    Default: ''
+    Default: ""
   LogsRetentionInDays:
     Type: Number
     Description: >
@@ -30,56 +30,56 @@ Parameters:
       your container instances. If you specify a VPC ID, you must specify a list of
       existing subnets in that VPC. If you do not specify a VPC ID, a new VPC is created
       with at least 1 subnet.
-    Default: ''
+    Default: ""
     ConstraintDescription: >
-      VPC Id must begin with 'vpc-' or leave blank to have a
+      VPC Id must begin with "vpc-" or leave blank to have a
       new VPC created
   SubnetIds:
     Type: CommaDelimitedList
     Description: >
       Optional - Specifies the Comma separated list of existing VPC Subnet
       Ids where ECS instances will run
-    Default: ''
+    Default: ""
   PrivateSubnetIds:
     Type: CommaDelimitedList
     Description: >
       Optional - Specifies the Comma separated list of existing VPC Subnet
       Ids where ECS instances will run
-    Default: ''
+    Default: ""
   VpcCidr:
     Type: String
     Description: Optional - Specifies the CIDR Block of VPC
-    Default: '10.0.0.0/16'
+    Default: "10.0.0.0/16"
   SubnetCidr1:
     Type: String
     Description: Specifies the CIDR Block of Subnet 1
-    Default: '10.0.0.0/24'
+    Default: "10.0.0.0/24"
   SubnetCidr2:
     Type: String
     Description: Specifies the CIDR Block of Subnet 2
-    Default: '10.0.1.0/24'
+    Default: "10.0.1.0/24"
   SubnetCidr3:
     Type: String
     Description: Specifies the CIDR Block of Subnet 3
-    Default: '10.0.2.0/24'
+    Default: "10.0.2.0/24"
   PrivateSubnetCidr1:
     Type: String
     Description: Specifies the CIDR Block of Private Subnet 1
-    Default: '10.0.3.0/24'
+    Default: "10.0.3.0/24"
   PrivateSubnetCidr2:
     Type: String
     Description: Specifies the CIDR Block of Private Subnet 2
-    Default: '10.0.4.0/24'
+    Default: "10.0.4.0/24"
   PrivateSubnetCidr3:
     Type: String
     Description: Specifies the CIDR Block of Private Subnet 3
-    Default: '10.0.5.0/24'
+    Default: "10.0.5.0/24"
   AsgMaxSize:
     Type: Number
     Description: >
       Specifies the number of instances to launch and register to the cluster.
       Defaults to 1.
-    Default: '1'
+    Default: "1"
   S3MinioIngressPort:
     Type: Number
     Description: >
@@ -95,7 +95,7 @@ Parameters:
     Description: >
       Specifies a comma-separated list of 3 VPC Availability Zones for
       the creation of new subnets. These zones must have the available status.
-    Default: ''
+    Default: ""
   EbsVolumeSize:
     Type: Number
     Description: >
@@ -104,9 +104,9 @@ Parameters:
   EbsVolumeType:
     Type: String
     Description: Optional - Specifies the Type of (Amazon EBS) volume
-    Default: 'gp2'
+    Default: "gp2"
     AllowedValues:
-      - ''
+      - ""
       - standard
       - io1
       - gp2
@@ -119,10 +119,10 @@ Parameters:
     Default: /dev/xvdcz
   LiveLogsViewerAccessFromCidrIp:
     Type: String
-    Default: '0.0.0.0/32'
+    Default: "0.0.0.0/32"
   AllowSshAccessToClusterFromCidr:
     Type: String
-    Default: '0.0.0.0/32'
+    Default: "0.0.0.0/32"
   PrivateDnsNamespaceName:
     Type: String
   GrafanaDatasourceYaml:
@@ -135,28 +135,28 @@ Parameters:
     Type: String
 Conditions:
   IsSshAccessToClusterEnabled:
-    !Not [!Equals [!Ref AllowSshAccessToClusterFromCidr, '0.0.0.0/32']]
+    !Not [!Equals [!Ref AllowSshAccessToClusterFromCidr, "0.0.0.0/32"]]
   IsKeyPairProvided:
-    !Not [!Equals [!Ref KeyName, '']]
+    !Not [!Equals [!Ref KeyName, ""]]
   CreateNewVpc:
-    !Equals [!Ref VpcId, '']
+    !Equals [!Ref VpcId, ""]
   CreateSubnet1: !And
-    - !Not [!Equals [!Ref SubnetCidr1, '']]
+    - !Not [!Equals [!Ref SubnetCidr1, ""]]
     - !Condition CreateNewVpc
   CreateSubnet2: !And
-    - !Not [!Equals [!Ref SubnetCidr2, '']]
+    - !Not [!Equals [!Ref SubnetCidr2, ""]]
     - !Condition CreateSubnet1
   CreateSubnet3: !And
-    - !Not [!Equals [!Ref SubnetCidr3, '']]
+    - !Not [!Equals [!Ref SubnetCidr3, ""]]
     - !Condition CreateSubnet2
   CreatePrivateSubnet1: !And
-    - !Not [!Equals [!Ref PrivateSubnetCidr1, '']]
+    - !Not [!Equals [!Ref PrivateSubnetCidr1, ""]]
     - !Condition CreateNewVpc
   CreatePrivateSubnet2: !And
-    - !Not [!Equals [!Ref PrivateSubnetCidr2, '']]
+    - !Not [!Equals [!Ref PrivateSubnetCidr2, ""]]
     - !Condition CreatePrivateSubnet1
   CreatePrivateSubnet3: !And
-    - !Not [!Equals [!Ref PrivateSubnetCidr3, '']]
+    - !Not [!Equals [!Ref PrivateSubnetCidr3, ""]]
     - !Condition CreatePrivateSubnet2
 
 Resources:
@@ -165,13 +165,13 @@ Resources:
     Properties:
       ClusterName: !Ref EcsClusterName
   EcsInstanceRole:
-    Type: 'AWS::IAM::Role'
+    Type: "AWS::IAM::Role"
     Properties:
       RoleName: BrowserupEcsInstanceRole
       AssumeRolePolicyDocument:
-        Version: '2008-10-17'
+        Version: "2008-10-17"
         Statement:
-          - Sid: ''
+          - Sid: ""
             Effect: Allow
             Principal:
               Service: ec2.amazonaws.com
@@ -179,12 +179,12 @@ Resources:
       ManagedPolicyArns:
         - "arn:aws:iam::aws:policy/service-role/AmazonEC2ContainerServiceforEC2Role"
   TaskDefinitionsRole:
-    Type: 'AWS::IAM::Role'
+    Type: "AWS::IAM::Role"
     Properties:
       AssumeRolePolicyDocument:
-        Version: '2008-10-17'
+        Version: "2008-10-17"
         Statement:
-          - Sid: ''
+          - Sid: ""
             Effect: Allow
             Principal:
               Service: ecs-tasks.amazonaws.com
@@ -280,7 +280,7 @@ Resources:
     Type: AWS::EC2::Route
     Properties:
       RouteTableId: !Ref RouteTableViaNATGateway
-      DestinationCidrBlock: '0.0.0.0/0'
+      DestinationCidrBlock: "0.0.0.0/0"
       NatGatewayId: !Ref NATGateway
   AttachGateway:
     Condition: CreateSubnet1
@@ -475,7 +475,7 @@ Resources:
                 http {
                   map $http_upgrade $connection_upgrade {
                     default upgrade;
-                    '' close;
+                    "" close;
                   }
                   server {
                     listen ${GrafanaIngressPort};
@@ -755,7 +755,7 @@ Outputs:
     Value: !GetAtt PrivateNamespace.Id
   PublicSubnetIds:
     Value: !Join
-      - ','
+      - ","
       - !If
         - CreateSubnet1
         - !If
@@ -768,7 +768,7 @@ Outputs:
         - !Ref SubnetIds
   PrivateSubnetIds:
     Value: !Join
-      - ','
+      - ","
       - !If
         - CreatePrivateSubnet1
         - !If
@@ -781,4 +781,4 @@ Outputs:
         - !Ref PrivateSubnetIds
   TemplateVersion:
     Description: The version of the template used by Create Cluster Wizard
-    Value: '2.0.0'
+    Value: "2.0.0"

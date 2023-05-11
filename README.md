@@ -14,7 +14,7 @@ node --experimental-vm-modules
 
 Running a single test:
 ```bash
-jest -t 'displays load start'
+jest -t "displays load start"
 ```
 
 # Important! TESTING NOTE!
@@ -22,7 +22,7 @@ jest -t 'displays load start'
 You NEED to pass --experimental-vm-modules to node, otherwise you will get this error:
     In IntelliJ, each test needs this flag pasted into NODE OPTIONS: --experimental-vm-modules
 
-If you don't, you'll see an error like:
+If you don"t, you"ll see an error like:
 
 ```
 Test suite failed to run

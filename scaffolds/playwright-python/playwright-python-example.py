@@ -5,7 +5,7 @@ def run(playwright):
     page = browser.new_page()
     page.goto("http://example.com")
 
-    print(page.inner_html('*'))
+    print(page.inner_html("*"))
     # other actions...
     browser.close()
 

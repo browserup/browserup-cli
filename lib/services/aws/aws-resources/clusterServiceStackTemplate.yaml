@@ -1,4 +1,4 @@
-AWSTemplateFormatVersion: '2010-09-09'
+AWSTemplateFormatVersion: "2010-09-09"
 Description: >
   Browserup cluster services (ECS services and tasks)
 Parameters:
@@ -24,12 +24,12 @@ Parameters:
     Type: String
     Description: >
       Initial api token
-    Default: ''
+    Default: ""
   MinionsKeyName:
     Type: String
     Description: >
-      Optional key pair name to use for minions cluster, in case it doesn't exist in cluster it will be ignored.
-    Default: ''
+      Optional key pair name to use for minions cluster, in case it doesn"t exist in cluster it will be ignored.
+    Default: ""
   AwsAccessKeyId:
     Type: String
     Description: >
@@ -69,19 +69,19 @@ Parameters:
   LogMaxSize:
     Type: String
     Description: >
-      'max-size' param of log driver for a container. The maximum size of the log before it is rolled. A positive integer plus a modifier representing the unit of measure (k, m, or g). Defaults to -1 (unlimited).
-    Default: '10m'
+      "max-size" param of log driver for a container. The maximum size of the log before it is rolled. A positive integer plus a modifier representing the unit of measure (k, m, or g). Defaults to -1 (unlimited).
+    Default: "10m"
   LogMaxFile:
     Type: String
     Description: >
-      'max-file' param of log driver for a container. The maximum number of log files that can be present. If rolling the logs creates excess files, the oldest file is removed. Only effective when max-size is also set. A positive integer.
-    Default: '10'
+      "max-file" param of log driver for a container. The maximum number of log files that can be present. If rolling the logs creates excess files, the oldest file is removed. Only effective when max-size is also set. A positive integer.
+    Default: "10"
   AllowSshAccessToMinionFromCidr:
     Type: String
-    Default: '0.0.0.0/32'
+    Default: "0.0.0.0/32"
   WebconsoleProtocol:
     Type: String
-    Default: 'http'
+    Default: "http"
   PrivateSubnetIDs:
     Type: CommaDelimitedList
   PublicSubnetIDs:
@@ -95,7 +95,7 @@ Parameters:
   ForceRecreateNginxFlag:
     Type: String
 Conditions:
-  IsTlsForWebconsoleEnabledCond: !Equals [ !Ref WebconsoleProtocol, 'https' ]
+  IsTlsForWebconsoleEnabledCond: !Equals [ !Ref WebconsoleProtocol, "https" ]
 
 Resources:
   InfluxTaskDefinition:
@@ -130,7 +130,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -160,7 +160,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           PortMappings:
             - HostPort: !Ref WcIngressPort
               Protocol: tcp
@@ -197,7 +197,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         # GRID
-        - Image: !Join ['', ['docker.io/browserup/grid-java-api:', !Ref ServicesImageTag]]
+        - Image: !Join ["", ["docker.io/browserup/grid-java-api:", !Ref ServicesImageTag]]
           Name: grid-java-api
           Environment:
             - Name: AWS_ACCESS_KEY_ID
@@ -225,7 +225,7 @@ Resources:
             - Name: ECS_INSTANCE_ROLE_ARN
               Value: !Ref EcsInstanceRoleArn
             - Name: INFLUX_DB_HOST
-              Value: !Join ['', ['influxdb.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["influxdb.", !Ref PrivateDnsNamespaceName]]
             - Name: INFLUX_DB_PORT
               Value: 8086
             - Name: INFLUX_DB_NAME
@@ -243,13 +243,13 @@ Resources:
             - Name: RABBITMQ_QUEUE_PORT
               Value: 5672
             - Name: RABBITMQ_HOST
-              Value: !Join ['', ['rabbitmq.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["rabbitmq.", !Ref PrivateDnsNamespaceName]]
             - Name: ZOOKEEPER_HOST
-              Value: !Join ['', ['zookeeper.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["zookeeper.", !Ref PrivateDnsNamespaceName]]
             - Name: ZOOKEEPER_CLIENT_PORT
               Value: 2181
             - Name: S3_MINIO_HOST
-              Value: !Join ['', ['minio.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["minio.", !Ref PrivateDnsNamespaceName]]
             - Name: S3_MINIO_PORT_1
               Value: 9000
             - Name: S3_MINIO_PORT_2
@@ -270,13 +270,13 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
               HardLimit: 51200
         # COORDINATOR
-        - Image: !Join ['', ['docker.io/browserup/grid-java-coordinator:', !Ref ServicesImageTag]]
+        - Image: !Join ["", ["docker.io/browserup/grid-java-coordinator:", !Ref ServicesImageTag]]
           Name: grid-java-coordinator
           Environment:
             - Name: AWS_ACCESS_KEY_ID
@@ -296,7 +296,7 @@ Resources:
             - Name: EC2_INSTANCE_FAMILY
               Value: c5
             - Name: INFLUX_DB_HOST
-              Value: !Join ['', ['influxdb.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["influxdb.", !Ref PrivateDnsNamespaceName]]
             - Name: INFLUX_DB_PORT
               Value: 8086
             - Name: INFLUX_DB_NAME
@@ -314,13 +314,13 @@ Resources:
             - Name: RABBITMQ_QUEUE_PORT
               Value: 5672
             - Name: RABBITMQ_HOST
-              Value: !Join ['', ['rabbitmq.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["rabbitmq.", !Ref PrivateDnsNamespaceName]]
             - Name: ZOOKEEPER_HOST
-              Value: !Join ['', ['zookeeper.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["zookeeper.", !Ref PrivateDnsNamespaceName]]
             - Name: ZOOKEEPER_CLIENT_PORT
               Value: 2181
             - Name: S3_MINIO_HOST
-              Value: !Join ['', ['minio.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["minio.", !Ref PrivateDnsNamespaceName]]
             - Name: S3_MINIO_PORT_1
               Value: 9000
             - Name: S3_MINIO_PORT_2
@@ -351,7 +351,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -385,7 +385,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -414,7 +414,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -477,7 +477,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -506,7 +506,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -564,7 +564,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           MountPoints:
             - ContainerPath: /etc/loki/local-config.yaml
               SourceVolume: loki-volume
@@ -587,7 +587,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         # WEBCONSOLE
-        - Image: !Join ['', ['docker.io/browserup/webconsole:', !Ref ServicesImageTag]]
+        - Image: !Join ["", ["docker.io/browserup/webconsole:", !Ref ServicesImageTag]]
           Name: webconsole
           Environment:
             - Name: DOCKER_LOGS
@@ -603,7 +603,7 @@ Resources:
             - Name: AWS_SECRET_ACCESS_KEY
               Value: !Ref AwsSecretAccessKey
             - Name: MYSQL_HOST
-              Value: !Join ['', ['mysql.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["mysql.", !Ref PrivateDnsNamespaceName]]
             - Name: MYSQL_PASSWORD
               Value: just_testing
             - Name: DATABASE_URL
@@ -637,7 +637,7 @@ Resources:
             - Name: REDIS_URL
               Value: redis://redis:6379/1
             - Name: S3_MINIO_HOST
-              Value: !Join ['', ['minio.', !Ref PrivateDnsNamespaceName]]
+              Value: !Join ["", ["minio.", !Ref PrivateDnsNamespaceName]]
             - Name: S3_MINIO_PORT_1
               Value: 9000
             - Name: S3_MINIO_PORT_2
@@ -658,7 +658,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -695,7 +695,7 @@ Resources:
           LogConfiguration:
             LogDriver: fluentd
             Options:
-              fluentd-address: !Join ['', ['fluentbit.', !Ref PrivateDnsNamespaceName, ':24224']]
+              fluentd-address: !Join ["", ["fluentbit.", !Ref PrivateDnsNamespaceName, ":24224"]]
           Ulimits:
             - Name: nofile
               SoftLimit: 51200
@@ -1164,7 +1164,7 @@ Resources:
 Outputs:
   UsedByECSCreateCluster:
     Description: Flag used by ECS Create Cluster Wizard
-    Value: 'true'
+    Value: "true"
   TemplateVersion:
     Description: The version of the template used by Create Cluster Wizard
-    Value: '2.0.0'
+    Value: "2.0.0"

@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-require 'typhoeus'
+require "typhoeus"
 
 response = Typhoeus.get("https://cloudflare-quic.com/")
 puts response.code
