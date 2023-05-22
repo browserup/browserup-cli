@@ -1,0 +1,7 @@
+global:
+  scrape_interval: 15s
+
+scrape_configs:
+  - job_name: 'zookeeper'
+    static_configs:
+      - targets: ['zookeeper:7000'] # Replace with the ZooKeeper exporter service name and port

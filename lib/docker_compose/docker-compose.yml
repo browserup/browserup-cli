@@ -1,4 +1,4 @@
-version: "3.7"
+version: '3.7'
 
 services:
 
@@ -105,6 +105,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock
     restart: on-failure
     environment:
+      - BROWSERUP_MINION_USE_LOCAL_CACHE=${BROWSERUP_MINION_USE_LOCAL_CACHE}
       - STANDARD_IMAGE_VERSION_TAG_OVERRIDE=${STANDARD_IMAGE_VERSION_TAG_OVERRIDE}
       - BROWSERUP_MINION_PROFILING=${BROWSERUP_MINION_PROFILING}
       - BROWSERUP_MINION_PROFILING_PORT=${BROWSERUP_MINION_PROFILING_PORT}
@@ -290,6 +291,7 @@ services:
     container_name: browserup_zookeeper
     image: zookeeper:3.8.1
     volumes:
+      - ./resources/zoo.cfg:/conf/zoo.cfg
       - zookeeper-data-volume:/data
       - zookeeper-datalog-volume:/datalog
     ports:
@@ -361,12 +363,21 @@ services:
       GF_DASHBOARDS_DEFAULT_HOME_DASHBOARD_PATH: /etc/grafana/provisioning/dashboards/grafana-default-dashboard.json
     depends_on:
       - fluentbit
+      - prometheus
     ports:
       - "${GRAFANA_PORT}:3000"
     volumes:
       - ./resources/grafana-datasource.yaml:/etc/grafana/provisioning/datasources/grafana-datasource.yaml
       - ./resources/grafana-dashboards-provider.yaml:/etc/grafana/provisioning/dashboards/grafana-dashboards-provider.yaml
       - ./resources/grafana-default-dashboard.json:/etc/grafana/provisioning/dashboards/grafana-default-dashboard.json
+      - ./resources/grafana-zookeeper-dashboard.json:/etc/grafana/provisioning/dashboards/grafana-zookeeper-dashboard.json
+
+  prometheus:
+    image: prom/prometheus:v2.44.0
+    volumes:
+      - ./resources/prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - "${PROMETHEUS_PORT}:9090"
 
 volumes:
   influxdb-volume:

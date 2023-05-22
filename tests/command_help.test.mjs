@@ -34,7 +34,6 @@ describe("command help", function () {
         spies = [];
         consoleOutput = "";
         browserupCLIOutput = "";
-        global.exitOverride = false;
     });
 
     function prepArgs(cmd) {

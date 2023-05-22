@@ -1,0 +1,23 @@
+scenario:
+  name: <%- scenario_name %>
+  total_users: <%- total_users %>
+  profiles:<% exampleArr.forEach((example, i) => { %>
+    <%- Object.entries(example).map(([k, v], index) => `${index === 0 ? '- ' : ' '}${k}: "${v}"`).join("\n" + ' '.repeat(5)) -%>
+             <% }); %>
+  stop_after: 15m
+  ramp:
+    - ramp_to: 100%
+      over: 5m
+
+reports:
+  - name: 'UrlResponseTime'
+    title: 'URL 90th Response Time (SLA)'
+    type: 'line'
+    cards:
+      - metrics:
+        - metric: 'urls.response_ms.avg'
+          check:
+            '<': 2000
+
+settings:
+    cluster_type: local
