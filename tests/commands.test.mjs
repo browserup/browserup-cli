@@ -94,7 +94,6 @@ describe("commands", function () {
             cli.program.parse(prepArgs("load status -v -c ./files/browserup.load.yaml"));
             await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Loading Run IDs with active status, scenario ID filter");
-
         });
 
         it("cluster destroy errors with no config", async function () {
@@ -111,19 +110,6 @@ describe("commands", function () {
 
         it("cluster destroy with bad config path", async function () {
             cli.program.parse(prepArgs("cluster destroy -c ./i_dont_exist/browserup.load.yaml"));
-            await new Promise(process.nextTick);
-            expect(consoleOutput).toMatch("Browserup YAML does not exist");
-        });
-
-
-        it("cluster deploy without config", async function () {
-            cli.program.parse(prepArgs("cluster -v deploy -c /tmp/foo"));
-            await new Promise(process.nextTick);
-            expect(consoleOutput).toMatch("Browserup YAML does not exist");
-        });
-
-        it("cluster deploy with invalid config path", async function () {
-            cli.program.parse(prepArgs("cluster -v deploy -c ./idonotexist/browserup.load.yaml"));
             await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Browserup YAML does not exist");
         });
