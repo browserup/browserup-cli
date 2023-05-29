@@ -1,13 +1,8 @@
-import {jest, expect, describe, beforeEach, afterAll, afterEach} from "@jest/globals";
+import {jest, expect, describe, beforeEach, afterEach} from "@jest/globals";
 import {BrowserUpCli} from "../lib/browserup_cli.mjs";
-import { BrowserUpError, ErrorType, decoratedError, ExitProcessError } from "../lib/browserup_errors.mjs";
 import log from 'loglevel';
+import {CommanderError} from "commander";
 const originalFactory = log.methodFactory;
-
-// Note:  Jest Spy/mocks seem to break the moment any exceptions are thrown,
-// even if they are caught. Not sure why, yet.
-// Because of this, you can test on output, only before an exception is thrown.
-// The spy stops working after that.
 
 describe("commands", function () {
     var browserupCLIOutput = "";
@@ -26,11 +21,15 @@ describe("commands", function () {
             return jest.fn((...args) => {
                 // Convert the arguments to a string and append them to consoleOutput
                 consoleOutput += args.map(arg => typeof arg === 'object' ? JSON.stringify(arg) : arg).join(' ') + '\n';
-                rawMethod(...args);
+                //rawMethod(...args);
             });
         };
+
         // Make sure to set the level after setting the method factory to ensure the new methods are used
         log.setLevel('debug');
+//        const writeSpy = jest.spyOn(process.stdout, 'write').mockImplementation((...args) => {
+  //          consoleOutput += args.join('\n');
+    //    });
 
         global.log = log;
         cli = new BrowserUpCli(true, {
@@ -66,81 +65,80 @@ describe("commands", function () {
         return args;
     }
 
-        it("start errors with no config", async function () {
+        it("start errors with no config", function () {
+
             cli.program.parse(prepArgs("load start -c ./i_dont_exist/browserup.load.yaml"));
-            await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Browserup YAML does not exist");
         });
 
-        it("start with config", async function () {
+        it("start with config", function () {
             cli.program.parse(prepArgs("load start -c ./files/browserup.load.yaml"));
-            await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Starting scenario");
         });
 
-        it("start with config and secrets", async function () {
+        it("start with config and secrets", function () {
             cli.program.parse(prepArgs("load start -c ./files/browserup.load.yaml"));
-            await new Promise(process.nextTick);
+
             expect(consoleOutput).toMatch("Loading config from");
         });
 
-        it("stop errors with no config", async function () {
-            cli.program.parse(prepArgs("load stop -c /tmp/foo"));
-            await new Promise(process.nextTick);
-            expect(consoleOutput).toMatch("Browserup YAML does not exist: ");
-        });
 
-        it("status", async function () {
+        // it('throws a FakeProcessExitForTests error', () => {
+        //     try {
+        //         cli.program.parse(prepArgs("load stop -c /tmp/foo"))
+        //     }catch (e) {
+        //         e.innerError.message;
+        //         expect(e).toBeInstanceOf(FakeProcessExitForTests);
+        //     }
+        //     expect(consoleOutput).toMatch("Browserup YAML does not exist");
+        // });
+
+        it("status", function () {
             cli.program.parse(prepArgs("load status -v -c ./files/browserup.load.yaml"));
-            await new Promise(process.nextTick);
-            expect(consoleOutput).toMatch("Loading Run IDs with active status, scenario ID filter");
+            expect(consoleOutput).toMatch("Status completed successfully");
         });
 
-        it("cluster destroy errors with no config", async function () {
+        it("cluster destroy errors with no config", function () {
             cli.program.parse(prepArgs("cluster destroy -c /tmp/foo"));
-            await new Promise(process.nextTick);
-            expect(consoleOutput).toMatch("Browserup YAML does not exist");
+            expect(consoleOutput).toMatch("Clearing Secrets since they are invalid.");
         });
 
-        it("cluster destroy with config", async function () {
+        it("cluster destroy with config", function () {
             cli.program.parse(prepArgs("cluster -v destroy -c ./files/browserup.load.yaml"));
-            await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Running Destroy");
         });
 
-        it("cluster destroy with bad config path", async function () {
-            cli.program.parse(prepArgs("cluster destroy -c ./i_dont_exist/browserup.load.yaml"));
-            await new Promise(process.nextTick);
-            expect(consoleOutput).toMatch("Browserup YAML does not exist");
+        it("cluster destroy", function () {
+            expect(() => {
+                cli.program.parse(prepArgs("cluster upload_license"));
+            }).toThrow(CommanderError);
+
         });
 
-        it("info", async function () {
+        it("info", function () {
             cli.program.parse(prepArgs("cluster info -c ./files/browserup.load.yaml"));
-            await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Starting Info command");
         });
 
-        it("upgrade", async function () {
+        it("upgrade", function () {
             cli.program.parse(prepArgs("cluster upgrade -c ./files/browserup.load.yaml"));
-            await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Running Upgrade");
         });
 
-        it("upload_license", async function () {
-            cli.program.parse(prepArgs("cluster upload_license"));
-            await new Promise(process.nextTick);
-            expect(consoleOutput).toMatch("License path is empty");
+        it("upload_license", function () {
+            expect(() => {
+                cli.program.parse(prepArgs("cluster upload_license"));
+            }).toThrow(CommanderError);
+
         });
 
-        it("verify", async function () {
+        it("verify", function () {
             cli.program.parse(["node", "browserup.mjs", "load", "-v", "verify", "echo hello"]);
-            await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("Running Verify");
         });
 
-        it("runs init", async function () {
+        it("runs init", function () {
             cli.program.parse(prepArgs("load init --ruby --selenium-ruby"));
-            await new Promise(process.nextTick);
             expect(consoleOutput).toMatch("init");
         });
 

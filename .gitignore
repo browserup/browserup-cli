@@ -128,3 +128,8 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+# ignore generated files in root
+browserup.load.yaml
+ruby-example.rb
+selenium-ruby-example.rb

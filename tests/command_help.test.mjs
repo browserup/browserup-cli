@@ -1,4 +1,4 @@
-import {jest, expect, describe, beforeEach, afterAll, afterEach} from "@jest/globals";
+import {jest, expect, describe, beforeEach, afterEach} from "@jest/globals";
 //import {helpCommand} from "./helpers.mjs";
 import {BrowserUpCli} from "../lib/browserup_cli.mjs";
 
