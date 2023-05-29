@@ -7,3 +7,9 @@ datasources:
     url: http://loki.browserup-internal.com:3100
     jsonData:
       maxLines: 1000
+
+  - name: Prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus.browserup-internal.com:9090 # Replace with the URL of your Prometheus instance
+    isDefault: true

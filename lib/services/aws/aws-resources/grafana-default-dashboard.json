@@ -105,13 +105,14 @@
           "options": {
             "include": {
               "names": [
-                "log"
+                "log",
+                "Time"
               ]
             }
           }
         }
       ],
-      "type": "table"
+      "type": "logs"
     },
     {
       "datasource": {
@@ -191,13 +192,14 @@
           "options": {
             "include": {
               "names": [
-                "log"
+                "log",
+                "Time"
               ]
             }
           }
         }
       ],
-      "type": "table"
+      "type": "logs"
     },
     {
       "datasource": {
@@ -277,13 +279,14 @@
           "options": {
             "include": {
               "names": [
-                "log"
+                "log",
+                "Time"
               ]
             }
           }
         }
       ],
-      "type": "table"
+      "type": "logs"
     },
     {
       "datasource": {
@@ -363,16 +366,17 @@
           "options": {
             "include": {
               "names": [
-                "log"
+                "log",
+                "Time"
               ]
             }
           }
         }
       ],
-      "type": "table"
+      "type": "logs"
     }
   ],
-  "refresh": "",
+  "refresh": "5s",
   "revision": 1,
   "schemaVersion": 38,
   "style": "dark",
@@ -412,7 +416,7 @@
     "type": "timepicker"
   },
   "timezone": "browser",
-  "title": "Home",
+  "title": "Logs Dashboard",
   "version": 0,
   "weekStart": ""
 }
