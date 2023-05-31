@@ -90,6 +90,7 @@ Parameters:
     Type: String
   StandardImageVersionTag:
     Type: String
+    Default: ''
   PrivateNamespaceId:
     Type: String
   ForceRecreateNginxFlag:
