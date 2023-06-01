@@ -82,17 +82,6 @@ describe("commands", function () {
             expect(consoleOutput).toMatch("Loading config from");
         });
 
-
-        // it('throws a FakeProcessExitForTests error', () => {
-        //     try {
-        //         cli.program.parse(prepArgs("load stop -c /tmp/foo"))
-        //     }catch (e) {
-        //         e.innerError.message;
-        //         expect(e).toBeInstanceOf(FakeProcessExitForTests);
-        //     }
-        //     expect(consoleOutput).toMatch("Browserup YAML does not exist");
-        // });
-
         it("status", function () {
             cli.program.parse(prepArgs("load status -v -c ./files/browserup.load.yaml"));
             expect(consoleOutput).toMatch("Status completed successfully");
@@ -112,7 +101,6 @@ describe("commands", function () {
             expect(() => {
                 cli.program.parse(prepArgs("cluster upload_license"));
             }).toThrow(CommanderError);
-
         });
 
         it("info", function () {
@@ -129,7 +117,13 @@ describe("commands", function () {
             expect(() => {
                 cli.program.parse(prepArgs("cluster upload_license"));
             }).toThrow(CommanderError);
+        });
 
+        it("upload_license with bad path", function () {
+            expect(() => {
+            cli.program.parse(prepArgs("cluster upload_license -p /tmp"));
+            expect(consoleOutput).toMatch("Starting Info command");
+            }).toThrow();
         });
 
         it("verify", function () {
