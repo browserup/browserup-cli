@@ -51,6 +51,7 @@
     "dotenv": "^16.0.3",
     "ejs": "^3.1.9",
     "enumify": "^2.0.0",
+    "form-data": "^4.0.0",
     "fs": "^0.0.1-security",
     "fs-extra": "^11.1.1",
     "install": "^0.13.0",

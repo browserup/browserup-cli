@@ -1,0 +1,139 @@
+{
+	"info": {
+		"_postman_id": "2d863cc2-4ef4-43c4-af8e-4e7db8b17cb6",
+		"name": "BrowserUp Sample playground collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9880445"
+	},
+	"item": [
+		{
+			"name": "Get All toys",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.text()).to.include(\"foo\");",
+							"});",
+							"",
+							"pm.test(\"Result contains 'foo' toy\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    const filteredResponse = responseJson.filter(item => item.name === 'foo');",
+							"",
+							"    pm.expect(filteredResponse.length).to.be.greaterThan(0);",
+							"    const expectedId = 1;",
+							"    const expectedName = \"foo\";",
+							"    const expectedDescription = \"bar\";",
+							"",
+							"    const itemWithFooName = filteredResponse[0];",
+							"    pm.expect(itemWithFooName).to.have.property('id', expectedId);",
+							"    pm.expect(itemWithFooName).to.have.property('name', expectedName);",
+							"    pm.expect(itemWithFooName).to.have.property('description', expectedDescription);",
+							"",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://playground.browserup.com/api/toys?",
+					"protocol": "http",
+					"host": [
+						"playground",
+						"browserup",
+						"com"
+					],
+					"path": [
+						"api",
+						"toys"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get first toy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.text()).to.include(\"foo\");",
+							"});",
+							"",
+							"pm.test(\"Result contains 'foo' toy\", function () {",
+							"    const responseJson = pm.response.json();",
+							"",
+							"    const expectedId = 1;",
+							"    const expectedName = \"foo\";",
+							"    const expectedDescription = \"bar\";",
+							"",
+							"    const itemWithFooName = responseJson;",
+							"    pm.expect(itemWithFooName).to.have.property('id', expectedId);",
+							"    pm.expect(itemWithFooName).to.have.property('name', expectedName);",
+							"    pm.expect(itemWithFooName).to.have.property('description', expectedDescription);",
+							"",
+							"}); "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disabledSystemHeaders": {
+					"accept": true
+				}
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://playground.browserup.com/api/toys/1",
+					"protocol": "http",
+					"host": [
+						"playground",
+						"browserup",
+						"com"
+					],
+					"path": [
+						"api",
+						"toys",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
