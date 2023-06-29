@@ -69,16 +69,28 @@ npm install -g browserup
 
 ## Documentation
 
+### Linking
 
+To manually link the browserup command to the ./bin/browserup.mjs file, run:
 
+```bash
+npm link
+```
 
-
-
-Running from the command line:
+### Running from the command line:
 
 ```bash
 ./bin/browserup.mjs cluster
 ```
+
+## Installing for CI/CD
+
+SKIP_DOCKER=true npm install browserup
+
+In a CI/CD install, there may not be a local docker.  Installing this way will skip the postinstall 
+scripts to verify docker is present, and pre-pull docker images.
+
+
 
 ## Running the tests:
 

@@ -108,6 +108,11 @@ describe("commands", function () {
             expect(consoleOutput).toMatch("Starting Info command");
         });
 
+        it("watch", function () {
+            cli.program.parse(prepArgs("load watch"));
+            expect(consoleOutput).toMatch("Starting Watch command");
+        });
+
         it("upgrade", function () {
             cli.program.parse(prepArgs("cluster upgrade -c ./files/browserup.load.yaml"));
             expect(consoleOutput).toMatch("Running Upgrade");
