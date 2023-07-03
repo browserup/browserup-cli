@@ -3,7 +3,7 @@ import {jest, expect, describe, beforeEach, afterEach} from "@jest/globals";
 import {BrowserUpCli} from "../lib/browserup_cli.mjs";
 
 describe("command help", function () {
-    var browserupCLIOutput = "";
+    let browserupCLIOutput = "";
     let consoleOutput = "";
     let spies = [];
     let cli = null;

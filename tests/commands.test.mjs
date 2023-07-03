@@ -5,7 +5,7 @@ import {CommanderError} from "commander";
 const originalFactory = log.methodFactory;
 
 describe("commands", function () {
-    var browserupCLIOutput = "";
+    let browserupCLIOutput = "";
     let consoleOutput = "";
     let spies = [];
     let cli = null;
@@ -99,7 +99,7 @@ describe("commands", function () {
 
         it("cluster destroy", function () {
             expect(() => {
-                cli.program.parse(prepArgs("cluster upload_license"));
+                cli.program.parse(prepArgs("cluster upload-license"));
             }).toThrow(CommanderError);
         });
 
@@ -118,15 +118,15 @@ describe("commands", function () {
             expect(consoleOutput).toMatch("Running Upgrade");
         });
 
-        it("upload_license", function () {
+        it("upload-license", function () {
             expect(() => {
-                cli.program.parse(prepArgs("cluster upload_license"));
+                cli.program.parse(prepArgs("cluster upload-license"));
             }).toThrow(CommanderError);
         });
 
-        it("upload_license with bad path", function () {
+        it("upload-license with bad path", function () {
             expect(() => {
-            cli.program.parse(prepArgs("cluster upload_license -p /tmp"));
+            cli.program.parse(prepArgs("cluster upload-license -p /tmp"));
             expect(consoleOutput).toMatch("Starting Info command");
             }).toThrow();
         });
