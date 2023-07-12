@@ -1,0 +1,27 @@
+﻿<Properties StartupConfiguration="{198CF1D9-5818-4DF6-A776-8EC87D36CB53}|Default">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="SeleniumCSharpREADME.md">
+    <Files>
+      <File FileName="browserup.load.yaml" Line="1" Column="1" />
+      <File FileName="SeleniumCSharpREADME.md" Line="54" Column="4" />
+      <File FileName="SeleniumCSharpExample.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="selenium-csharp-example">
+            <Node name="selenium-csharp-example">
+              <Node name="SeleniumCSharpREADME.md" selected="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.ItemProperties.selenium-csharp-example PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+</Properties>
