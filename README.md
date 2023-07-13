@@ -1,5 +1,8 @@
 # BrowserUp
 
+This module installs the command-line interface for BrowserUp.
+The command-line interface can be used to install BrowserUp and run load tests.
+
 The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Load Testing Tool
 
 ## What is BrowserUp?
@@ -62,7 +65,7 @@ Oh, and one more thing
 ## Installation
 ```bash
 npm install -g browserup
-browserup cluster postinstall
+browserup cluster post-install
 ```
 
 ## Requirements
@@ -109,13 +112,12 @@ Running a single test:
 jest -t "displays load start"
 ```
 
-# Important! TESTING NOTE!
+# Testing note:
 
-You NEED to pass --experimental-vm-modules to node, otherwise you will get this error:
-    In IntelliJ, each test needs this flag pasted into NODE OPTIONS: --experimental-vm-modules
+You need to pass --experimental-vm-modules to node, otherwise you will get this error:
+In IntelliJ, each test needs this flag pasted into NODE OPTIONS: --experimental-vm-modules
 
 If you don"t, you"ll see an error like:
-
 ```
 Test suite failed to run
 
@@ -132,7 +134,10 @@ ESLint won't see the mjs files without help
 npx eslint --ext .mjs .
 ```
 
-# Packaging the CLI
+## Licensing
 
-To package as a standalone CLI, you can do this:
-https://medium.com/netscape/a-guide-to-create-a-nodejs-command-line-package-c2166ad0452e
+This NPM package is the command-line interface for BrowserUp.
+The command-line interface is AGPL-3.0 licensed.
+
+Licensing for BrowserUp itself is handled separately, with a separate 
+license and terms.
