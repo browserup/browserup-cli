@@ -4,15 +4,15 @@ The [DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) Load Testing To
 
 ## What is BrowserUp?
 
-BrowserUp is a suite of open source tools that offer a new approach to testing. Our first tool is 
-a load testing tool that lets you use your existing assets to drive load.
+BrowserUp is a suite of tools that offer a new approach to testing. Our first tool is 
+a load testing tool that uses your existing assets to drive load.
 
 The idea is simple--if you are like most companies, you maintain multiple implementations of "how to talk" to your app.
-We think that's a waste of time, and a source of bugs.
+We think that's a waste of time and a source of bugs.
 
 BrowserUp Load Test lets you take *anything* that drives traffic, and use _that_ to drive load for a load test.
-BrowserUp uses a unique model of scaling instrumented containers to drive load.
-You can take any asset that can run in a container, and use it to drive load.
+BrowserUp uses a unique *instrumented container* model of scaling load.
+You can take any asset that can run in a container and use it to drive load.
 
 Use your own libraries, your own scripts, your own code, your own tests, your own
 clients, your own mobile apps, your own IOT code, your own streaming video.
@@ -28,30 +28,31 @@ A few examples of how you can drive load for a BrowserUp load test:
 * Streaming video
 * Some random code you wrote yourself in *any* language
 
+See our [Documentation](https://browserup.github.io/docs/en/load/quick-start) for more details.
+
 There are a few key differences between BrowserUp and other load testing tools:
 
 * Because this isn't an _import_ it doesn't createa a second implementation to maintain in a script for HTTP, or in some other
 language.
-* We actually run _your_ *asset* 
-* you won't repeat yourself maintaining
+* BrowserUp actually runs _your_ *asset* 
+* You won't repeat yourself maintaining
 a separate load test implementation. We are the first DRY (Don't Repeat Yourself) load testing tool
-* Because it runs your code, it doesn't matter what language you use. Use any language you want.
-* Because it runs your code, you can use _your_ code libraries. The artifact folder and anything in it or below are mounted into the container.
+* It doesn't matter what language you use. Use any language you want.
+* Use _your_ code libraries. The artifact folder and anything in it or below are copied into the container.
 * Your code repo becomes the source of truth.
-* Most importantly, these differences let you use assets that are ready and updated much earlier in the release cycle, 
-so load testing can *shift left*  and you get feedback sooner, and release sooner.
+* Most importantly, you use assets that are ready much earlier in the release cycle, 
+so load testing can *shift left*  and you get feedback sooner, and release sooner. If you're using browser tests, 
+* use your page objects as soon as you have them.
 
 * No correlation, No stale-capture mistakes, No weird web IDEs, No weird scripting languages, 
 No weird DSLs, No weird test frameworks
 
-If you're using browser tests, use your page objects if you have them.
-
-BrowserUp's instrumented containers will collect all your performance stats without someone having to dig into the intricate, 
+BrowserUp's instrumented containers collect all your performance stats without someone having to dig into the intricate, 
 continually changing, request patterns of your app as you go from release to release.
 
-Your load tests will be *more* accurate, because you're using the thing that normally speaks to your app to drive the load.
+Your load tests will be *more* accurate.
 
-We publish data for data-driven testing as well as things like think time into the container
+BrowserUp publishes data for data-driven testing as well as things like think time into the container
 via environment variables.
 
 Oh, and one more thing
@@ -59,29 +60,33 @@ Oh, and one more thing
 
 
 ## Installation
-
-## Prerequisites
-
-
+```bash
 npm install -g browserup
+browserup cluster postinstall
+```
 
+## Requirements
 
+#### Local Cluster
+* Docker Installed and Running (make sure it is current)
+* Mac Arm64 (M1/M2) or AMD64 or Linux (Windows not yet supported)
+* 32 GB Ram or more Recommended
+#### Cloud Cluster
+* Amazon AWS account
+* Local Mac Arm64 (M1/M2) or AMD64 or Linux to operate the BrowserUp Command line Util
+* Local Docker is not required for remote AWS execution, so CI/CD setup is simple
 
 ## Documentation
 
-### Linking
-
-To manually link the browserup command to the ./bin/browserup.mjs file, run:
-
-```bash
-npm link
-```
+https://browserup.github.io/docs/en/load/quick-start
 
 ### Running from the command line:
 
 ```bash
-./bin/browserup.mjs cluster
+browserup
 ```
+
+
 
 ## Installing for CI/CD
 
