@@ -112,6 +112,8 @@ services:
       - BROWSERUP_MINION_DEBUG_SUSPEND=${BROWSERUP_MINION_DEBUG_SUSPEND}
       - BROWSERUP_MINION_DEBUG=${BROWSERUP_MINION_DEBUG}
       - BROWSERUP_MINION_DEBUG_PORT=${BROWSERUP_MINION_DEBUG_PORT}
+      - BROWSERUP_GRID_COORDINATOR_DEBUG=${BROWSERUP_GRID_COORDINATOR_DEBUG}
+      - BROWSERUP_GRID_COORDINATOR_DEBUG_PORT=${BROWSERUP_GRID_COORDINATOR_DEBUG_PORT}
       - RABBITMQ_HOST=${RABBITMQ_HOST}
       - RABBITMQ_DEFAULT_USER=browserup
       - RABBITMQ_DEFAULT_PASS=${RABBITMQ_DEFAULT_PASS}
@@ -372,6 +374,7 @@ services:
       - ./resources/grafana-dashboards-provider.yaml:/etc/grafana/provisioning/dashboards/grafana-dashboards-provider.yaml
       - ./resources/grafana-default-dashboard.json:/etc/grafana/provisioning/dashboards/grafana-default-dashboard.json
       - ./resources/grafana-zookeeper-dashboard.json:/etc/grafana/provisioning/dashboards/grafana-zookeeper-dashboard.json
+      - ./resources/grafana-grid-services-dashboard.json:/etc/grafana/provisioning/dashboards/grafana-grid-services-dashboard.json
 
   prometheus:
     image: prom/prometheus:v2.44.0

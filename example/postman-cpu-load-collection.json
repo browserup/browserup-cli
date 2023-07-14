@@ -1,0 +1,316 @@
+{
+	"info": {
+		"_postman_id": "a3afdbeb-98a0-43af-95da-43a7ffe1bcb0",
+		"name": "Sample Postman Collection",
+		"description": "A sample collection to demonstrate collections as a set of related requests",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "9880445"
+	},
+	"item": [
+		{
+			"name": "Test postman-echo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  for (let i = 0; i < 1000; i++) {",
+							"    const result = Math.random() * Math.random();",
+							"    for (let i = 0; i < 100000; i++) {",
+							"      Math.sqrt(result * i);",
+							"    }",
+							"  }",
+							"  pm.response.to.have.status(200);",
+							"  ",
+							"});",
+							"",
+							"pm.test(\"Response contains json with data key\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.data).to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Response data string is the same as in request\", function () {",
+							"    const responseJson = pm.response.json();",
+							"    pm.expect(responseJson.data).to.eql(pm.request.body.raw);",
+							"});",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium..."
+				},
+				"url": {
+					"raw": "https://postman-echo.com/post",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"post"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test browserup home page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  pm.response.to.have.status(200);",
+							"   for (let i = 0; i < 1000; i++) {",
+							"    const result = Math.random() * Math.random();",
+							"    for (let i = 0; i < 100000; i++) {",
+							"      Math.sqrt(result * i);",
+							"    }",
+							"  }",
+							"});",
+							"",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium..."
+				},
+				"url": {
+					"raw": "https://browserup.com",
+					"protocol": "https",
+					"host": [
+						"browserup",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test browserup request-demo page",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"   for (let i = 0; i < 1000; i++) {",
+							"    const result = Math.random() * Math.random();",
+							"    for (let i = 0; i < 100000; i++) {",
+							"      Math.sqrt(result * i);",
+							"    }",
+							"  }",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test(\"Content should contain 'Schedule Demo'\", function () {",
+							"  pm.expect(pm.response.text()).to.include(\"Schedule Demo\");",
+							"});",
+							"",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium..."
+				},
+				"url": {
+					"raw": "https://browserup.com/request-demo/",
+					"protocol": "https",
+					"host": [
+						"browserup",
+						"com"
+					],
+					"path": [
+						"request-demo",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test google.com",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  for (let i = 0; i < 1000; i++) {",
+							"    const result = Math.random() * Math.random();",
+							"    for (let i = 0; i < 100000; i++) {",
+							"      Math.sqrt(result * i);",
+							"    }",
+							"  }",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium..."
+				},
+				"url": {
+					"raw": "https://browserup.com",
+					"protocol": "https",
+					"host": [
+						"browserup",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test yahoo.com",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  for (let i = 0; i < 1000; i++) {",
+							"    const result = Math.random() * Math.random();",
+							"    for (let i = 0; i < 100000; i++) {",
+							"      Math.sqrt(result * i);",
+							"    }",
+							"  }",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"url": {
+					"raw": "https://yahoo.com",
+					"protocol": "https",
+					"host": [
+						"yahoo",
+						"com"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Test bing.com",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"  for (let i = 0; i < 1000; i++) {",
+							"    const result = Math.random() * Math.random();",
+							"    for (let i = 0; i < 100000; i++) {",
+							"      Math.sqrt(result * i);",
+							"    }",
+							"  }",
+							"  pm.response.to.have.status(200);",
+							"});",
+							"",
+							" "
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "text/plain"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "Duis posuere augue vel cursus pharetra. In luctus a ex nec pretium..."
+				},
+				"url": {
+					"raw": "https://browserup.com",
+					"protocol": "https",
+					"host": [
+						"browserup",
+						"com"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

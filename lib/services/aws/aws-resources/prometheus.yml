@@ -1,7 +1,17 @@
 global:
-  scrape_interval: 15s
+  scrape_interval: 10s
 
 scrape_configs:
   - job_name: 'zookeeper'
     static_configs:
       - targets: ['zookeeper.browserup-internal.com:7000']
+  - job_name: 'coordinator'
+    metrics_path: '/coordinator/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['grid-java-coordinator.browserup-internal.com:8081']
+  - job_name: 'grid'
+    metrics_path: '/grid/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['grid-java-api.browserup-internal.com:8080']
