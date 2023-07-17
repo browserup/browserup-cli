@@ -46,9 +46,9 @@ so load testing can **shift left**  and you get feedback sooner, and release soo
 BrowserUp's instrumented containers collect all your performance stats without someone having to dig into the intricate, 
 continually changing, request patterns of your app as you go from version to version.  Your load tests will be *more* accurate.
 
-Oh, and one more thing
+Oh, and One More Thing:
 
-For browsers, Integrated front-end **Core Web Vitals** metrics from your *existing tests*, with no extra code or work.
+For *any* browser-based test **Core Web Vitals** metrics from your *existing tests*, with no extra code or work.
 
 
 ## Installation
@@ -77,7 +77,6 @@ https://browserup.github.io/docs/en/load/quick-start
 ```bash
 browserup
 ```
-
 
 ## Installing for CI/CD
 
