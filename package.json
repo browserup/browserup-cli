@@ -1,15 +1,21 @@
 {
   "name": "browserup",
-  "version": "1.0.3",
+  "version": "1.0.5",
   "type": "module",
   "license": "AGPL-3.0",
   "homepage": "http://browserup.com",
+  "main": "./lib/browserup_cli.mjs",
   "bin": {
     "browserup": "./bin/browserup.mjs"
   },
   "description": "Command line interface for BrowserUp, the first DRY load testing tool. Load test with your own Playwright, Postman, Selenium, or API client code.",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/browserup/browserup-cli.git"
+  },
   "bugs": {
-    "url": "https://github.com/browserup/browserup-cli/issues"
+    "url": "https://github.com/browserup/browserup-cli/issues",
+    "email": "support@browserup.com"
   },
   "scripts": {
     "test": "jest",
