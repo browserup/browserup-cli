@@ -15,7 +15,7 @@ scenario:
       iteration_delay: "10s"
       allocation: "33%"
     - name: "SeleniumPyExample"
-      command: "python3 selenium-python-example.py"
+      command: "python3 selenium-js-example.cjs"
       think_time: "30s"
       artifact_dir: "."
       iteration_delay: "10s"

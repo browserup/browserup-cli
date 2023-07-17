@@ -1,23 +1,25 @@
 {
   "name": "browserup",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "type": "module",
   "license": "AGPL-3.0",
   "homepage": "http://browserup.com",
   "bin": {
     "browserup": "./bin/browserup.mjs"
   },
-"description": "Command line interface for BrowserUp, the first DRY load testing tool. Load test with your own Playwright, Postman, Selenium, or API client code.",
+  "description": "Command line interface for BrowserUp, the first DRY load testing tool. Load test with your own Playwright, Postman, Selenium, or API client code.",
   "bugs": {
     "url": "https://github.com/browserup/browserup-cli/issues"
   },
   "scripts": {
     "test": "jest",
-    "postinstall": "node ./lib/postinstall.mjs"
+    "postinstall": "node ./lib/postinstall.mjs",
+    "prepare": "./prepare.sh"
   },
   "keywords": [
     "browserup",
     "load",
+    "DRY Load Testing",
     "load test",
     "load testing",
     "performance test",
@@ -25,6 +27,7 @@
     "stress testing",
     "stress test",
     "core web vitals",
+    "web vitals",
     "Playwright load test",
     "Playwright load testing",
     "Playwright performance testing",
@@ -86,6 +89,7 @@
     "ora": "^6.3.1",
     "path": "^0.12.7",
     "retry-axios": "^3.0.0",
+    "selenium-webdriver": "^4.10.0",
     "semver": "^7.5.3",
     "strip-ansi": "^7.1.0",
     "tar": "^6.1.15",
@@ -98,5 +102,7 @@
     "eslint-plugin-unused-imports": "^2.0.0",
     "jest": "^29.5.0"
   },
-  "overrides": { "semver": "^7.5.3" }
+  "overrides": {
+    "semver": "^7.5.3"
+  }
 }
