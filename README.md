@@ -2,7 +2,7 @@
 
 ##  BrowserUp Command Line Interface (CLI)
 
-This package is used installs BrowserUp and manages load tests.
+This package installs BrowserUp and uses it to manage load tests.
 
 ### What is BrowserUp?
 
