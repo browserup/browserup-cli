@@ -91,5 +91,5 @@ scripts to verify docker is present, and pre-pull docker images.
 This NPM package is the command-line interface for BrowserUp.
 The command-line interface is AGPL-3.0 licensed.
 
-Licensing for BrowserUp itself **is handled separately**, with a separate 
+Licensing for BrowserUp itself **is handled separately** and is source available, but not open source, with a separate 
 license and terms.
