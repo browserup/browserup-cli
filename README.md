@@ -27,7 +27,7 @@ A few examples of how you can drive load for a BrowserUp load test--use your own
 * Curl
 * A Mobile App
 * An IOT App
-* Some random code you wrote yourself in *any* language
+* Some code you wrote in *whatever* language
 
 See our [Documentation](https://browserup.github.io/docs/en/load/quick-start) for more details.
 
