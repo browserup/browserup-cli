@@ -1,9 +1,12 @@
 <img src="https://browserup.com/wp-content/themes/browserup/images/logo-text-475x93.png" alt="BrowserUp" style="width: 200px;  margin-top: 25px;" />
 
+<<<<<<< HEAD
 ##  BrowserUp Command Line Interface (CLI)
 
 This package installs BrowserUp and uses it to manage load tests.
 
+=======
+>>>>>>> 7c6c20e3 (Version bump, update readme)
 ### What is BrowserUp?
 
 BrowserUp is a suite of tools that offer a new approach to testing. Our first tool is 
@@ -32,16 +35,12 @@ There are a few key differences between BrowserUp and other load testing tools:
 
 * Because this isn't an _import_ it doesn't create a second implementation to maintain in a script for HTTP, or in some other
 language.
-* BrowserUp actually runs _your_ *asset*
-* You don't repeat yourself maintaining
-a separate load test implementation. BrowserUp is the first DRY (Don't Repeat Yourself) load testing tool
+* BrowserUp actually runs _your_ *asset* and code libraries. The artifact folder and anything below is copied into the container.
 * No correlation, No stale-capture mistakes, No weird web IDEs, No weird scripting languages, 
 No weird DSLs, No weird test frameworks
-* Use _your_ code libraries. The artifact folder and anything in it or below are copied into the container.
 * Your code repo becomes the source of truth.
 * If you're using browser tests, use your page objects as soon as they are ready, so is your load test.
-* Most importantly, you use assets that are ready much earlier in the release cycle, 
-so load testing can **shift left**  and you get feedback sooner, and release sooner. 
+* By using assets that are ready earlier in the release cycle, load testing can **shift left** and give feedback sooner so you release sooner. 
 
 BrowserUp's instrumented containers collect all your performance stats without someone having to dig into the intricate, 
 continually changing, request patterns of your app as you go from version to version.  Your load tests will be *more* accurate.
@@ -89,7 +88,6 @@ scripts to verify docker is present, and pre-pull docker images.
 ## Licensing
 
 This NPM package is the command-line interface for BrowserUp.
-The command-line interface is AGPL-3.0 licensed.
 
-Licensing for BrowserUp itself **is handled separately** and is source available, but not open source, with a separate 
-license and terms.
+The command-line interface is AGPL-3.0 licensed, but licensing for BrowserUp itself is handled separately, 
+with a separate license and terms.
