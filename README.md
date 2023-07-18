@@ -1,12 +1,5 @@
 <img src="https://browserup.com/wp-content/themes/browserup/images/logo-text-475x93.png" alt="BrowserUp" style="width: 200px;  margin-top: 25px;" />
 
-<<<<<<< HEAD
-##  BrowserUp Command Line Interface (CLI)
-
-This package installs BrowserUp and uses it to manage load tests.
-
-=======
->>>>>>> 7c6c20e3 (Version bump, update readme)
 ### What is BrowserUp?
 
 BrowserUp is a suite of tools that offer a new approach to testing. Our first tool is 
@@ -76,6 +69,15 @@ https://browserup.github.io/docs/en/load/quick-start
 ```bash
 browserup
 ```
+
+### Help
+
+For help, run any command with -h
+
+Or,  Join us in [Slack](https://join.slack.com/t/browserup-community/shared_invite/zt-1zddvbu5f-_wZtMuANHgFaz9YstEspLw
+)
+
+
 
 ## Installing for CI/CD
 
