@@ -9,6 +9,6 @@ const playwright = require("playwright");
     await page.goto("http://playground.browserup.com/");
 
     const html = await page.content();
-    log.info(html);
+    console.log(html);
     await browser.close();
 })();
