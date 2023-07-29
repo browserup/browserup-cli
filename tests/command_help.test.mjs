@@ -12,7 +12,7 @@ describe("command help", function () {
         global.exitOverride = true;
         consoleOutput = "";
         browserupCLIOutput = "";
-        ["warn", "info", "debug", "error", "fatal", "trace"].forEach((method) => {
+        ["warn", "info", "debug", "error"].forEach((method) => {
             let spy = jest.spyOn(log, method).mockImplementation((str) => {
                 str = str.replace(/\x1b\[[0-9;]*m/g,""); //remove color codes
                 consoleOutput += str + "\n";
