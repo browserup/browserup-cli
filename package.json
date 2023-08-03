@@ -1,6 +1,6 @@
 {
   "name": "browserup",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "type": "module",
   "license": "AGPL-3.0",
   "homepage": "http://browserup.com",
@@ -19,7 +19,6 @@
   },
   "scripts": {
     "test": "jest",
-    "postinstall": "node ./lib/postinstall.mjs",
     "prepare": "./prepare.sh"
   },
   "keywords": [
