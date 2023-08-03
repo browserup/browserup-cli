@@ -254,47 +254,47 @@ Resources:
               Value: !Ref AdminEmails
             - Name: ECS_INSTANCE_ROLE_ARN
               Value: !Ref EcsInstanceRoleArn
-            - Name: INFLUX_DB_HOST
+            - Name: BROWSERUP_INFLUX_DB_HOST
               Value: !Join ['', ['influxdb.', !Ref PrivateDnsNamespaceName]]
-            - Name: INFLUX_DB_PORT
+            - Name: BROWSERUP_INFLUX_DB_PORT
               Value: 8086
-            - Name: INFLUX_DB_NAME
+            - Name: BROWSERUP_INFLUX_DB_NAME
               Value: browserup
-            - Name: INFLUX_DB_PASSWORD
+            - Name: BROWSERUP_INFLUX_DB_PASSWORD
               Value: just_testing
-            - Name: INFLUX_DB_USER
+            - Name: BROWSERUP_INFLUX_DB_USER
               Value: root
-            - Name: IS_CLOUD
+            - Name: BROWSERUP_IS_CLOUD
               Value: true
-            - Name: RABBITMQ_DEFAULT_PASS
+            - Name: BROWSERUP_RABBITMQ_DEFAULT_PASS
               Value: just_testing
-            - Name: RABBITMQ_DEFAULT_USER
+            - Name: BROWSERUP_RABBITMQ_DEFAULT_USER
               Value: browserup
-            - Name: RABBITMQ_QUEUE_PORT
+            - Name: BROWSERUP_RABBITMQ_QUEUE_PORT
               Value: 5672
-            - Name: RABBITMQ_HOST
+            - Name: BROWSERUP_RABBITMQ_HOST
               Value: !Join ['', ['rabbitmq.', !Ref PrivateDnsNamespaceName]]
-            - Name: ZOOKEEPER_HOST
+            - Name: BROWSERUP_ZOOKEEPER_HOST
               Value: !Join ['', ['zookeeper.', !Ref PrivateDnsNamespaceName]]
-            - Name: ZOOKEEPER_CLIENT_PORT
+            - Name: BROWSERUP_ZOOKEEPER_CLIENT_PORT
               Value: 2181
-            - Name: S3_MINIO_HOST
+            - Name: BROWSERUP_S3_MINIO_HOST
               Value: !Join ['', ['minio.', !Ref PrivateDnsNamespaceName]]
-            - Name: S3_MINIO_PORT_1
+            - Name: BROWSERUP_S3_MINIO_PORT_1
               Value: 9000
-            - Name: S3_MINIO_PORT_2
+            - Name: BROWSERUP_S3_MINIO_PORT_2
               Value: 9001
-            - Name: S3_MINIO_ACCESS_KEY_ID
+            - Name: BROWSERUP_S3_MINIO_ACCESS_KEY_ID
               Value: !Ref S3MinioAccessKeyID
-            - Name: S3_MINIO_SECRET_ACCESS_KEY
+            - Name: BROWSERUP_S3_MINIO_SECRET_ACCESS_KEY
               Value: !Ref S3MinioSecretAccessKeyID
-            - Name: S3_MINIO_HOST_PORT_1
+            - Name: BROWSERUP_S3_MINIO_HOST_PORT_1
               Value: 9000
-            - Name: S3_MINIO_ARTIFACTS_BUCKET
+            - Name: BROWSERUP_S3_MINIO_ARTIFACTS_BUCKET
               Value: artifacts
             - Name: BROWSERUP_MINIONS_KEY_PAIR_NAME
               Value: !Ref MinionsKeyName
-            - Name: WEBCONSOLE_PROTOCOL
+            - Name: BROWSERUP_WEBCONSOLE_PROTOCOL
               Value: !Ref WebconsoleProtocol
           Essential: true
           LogConfiguration:
@@ -325,43 +325,43 @@ Resources:
               Value: !Ref ClusterName
             - Name: EC2_INSTANCE_FAMILY
               Value: c5
-            - Name: INFLUX_DB_HOST
+            - Name: BROWSERUP_INFLUX_DB_HOST
               Value: !Join ['', ['influxdb.', !Ref PrivateDnsNamespaceName]]
-            - Name: INFLUX_DB_PORT
+            - Name: BROWSERUP_INFLUX_DB_PORT
               Value: 8086
-            - Name: INFLUX_DB_NAME
+            - Name: BROWSERUP_INFLUX_DB_NAME
               Value: browserup
-            - Name: INFLUX_DB_PASSWORD
+            - Name: BROWSERUP_INFLUX_DB_PASSWORD
               Value: just_testing
-            - Name: INFLUX_DB_USER
+            - Name: BROWSERUP_INFLUX_DB_USER
               Value: root
-            - Name: IS_CLOUD
+            - Name: BROWSERUP_IS_CLOUD
               Value: true
-            - Name: RABBITMQ_DEFAULT_PASS
+            - Name: BROWSERUP_RABBITMQ_DEFAULT_PASS
               Value: just_testing
-            - Name: RABBITMQ_DEFAULT_USER
+            - Name: BROWSERUP_RABBITMQ_DEFAULT_USER
               Value: browserup
-            - Name: RABBITMQ_QUEUE_PORT
+            - Name: BROWSERUP_RABBITMQ_QUEUE_PORT
               Value: 5672
-            - Name: RABBITMQ_HOST
+            - Name: BROWSERUP_RABBITMQ_HOST
               Value: !Join ['', ['rabbitmq.', !Ref PrivateDnsNamespaceName]]
-            - Name: ZOOKEEPER_HOST
+            - Name: BROWSERUP_ZOOKEEPER_HOST
               Value: !Join ['', ['zookeeper.', !Ref PrivateDnsNamespaceName]]
-            - Name: ZOOKEEPER_CLIENT_PORT
+            - Name: BROWSERUP_ZOOKEEPER_CLIENT_PORT
               Value: 2181
-            - Name: S3_MINIO_HOST
+            - Name: BROWSERUP_S3_MINIO_HOST
               Value: !Join ['', ['minio.', !Ref PrivateDnsNamespaceName]]
-            - Name: S3_MINIO_PORT_1
+            - Name: BROWSERUP_S3_MINIO_PORT_1
               Value: 9000
-            - Name: S3_MINIO_PORT_2
+            - Name: BROWSERUP_S3_MINIO_PORT_2
               Value: 9001
-            - Name: S3_MINIO_ACCESS_KEY_ID
+            - Name: BROWSERUP_S3_MINIO_ACCESS_KEY_ID
               Value: !Ref S3MinioAccessKeyID
-            - Name: S3_MINIO_SECRET_ACCESS_KEY
+            - Name: BROWSERUP_S3_MINIO_SECRET_ACCESS_KEY
               Value: !Ref S3MinioSecretAccessKeyID
-            - Name: S3_MINIO_HOST_PORT_1
+            - Name: BROWSERUP_S3_MINIO_HOST_PORT_1
               Value: 9000
-            - Name: S3_MINIO_ARTIFACTS_BUCKET
+            - Name: BROWSERUP_S3_MINIO_ARTIFACTS_BUCKET
               Value: artifacts
             - Name: EXECUTION_ROLE_ARN
               Value: !Ref TaskDefinitionsRoleArn
@@ -373,7 +373,7 @@ Resources:
               Value: !Ref EcsInstanceRoleArn
             - Name: BROWSERUP_MINIONS_KEY_PAIR_NAME
               Value: !Ref MinionsKeyName
-            - Name: USER_ARTIFACT_CACHE_PATH
+            - Name: BROWSERUP_USER_ARTIFACT_CACHE_PATH
               Value: /bu/artifactcache
             - Name: BROWSERUP_ALLOW_SSH_ACCESS_TO_MINION_FROM_CIDR
               Value: !Ref AllowSshAccessToMinionFromCidr
@@ -407,9 +407,9 @@ Resources:
         - Image: docker.io/rabbitmq:3-management
           Name: rabbitmq
           Environment:
-            - Name: RABBITMQ_DEFAULT_PASS
+            - Name: BROWSERUP_RABBITMQ_DEFAULT_PASS
               Value: just_testing
-            - Name: RABBITMQ_DEFAULT_USER
+            - Name: BROWSERUP_RABBITMQ_DEFAULT_USER
               Value: browserup
           Essential: true
           LogConfiguration:
@@ -438,7 +438,7 @@ Resources:
         - Image: docker.io/zookeeper:3.8.1
           Name: zookeeper
           Environment:
-            - Name: ZOO_MAX_CLIENT_CNXNS
+            - Name: BROWSERUP_ZOO_MAX_CLIENT_CNXNS
               Value: 500
           Essential: true
           LogConfiguration:
@@ -504,7 +504,7 @@ Resources:
           Environment:
             - Name: MYSQL_DATABASE
               Value: browserup_production
-            - Name: MYSQL_PASSWORD
+            - Name: BROWSERUP_MYSQL_PASSWORD
               Value: just_testing
             - Name: MYSQL_RANDOM_ROOT_PASSWORD
               Value: yes
@@ -629,7 +629,7 @@ Resources:
           Environment:
             - Name: DOCKER_LOGS
               Value: true
-            - Name: CLUSTER_PUBLIC_IP
+            - Name: BROWSERUP_CLUSTER_PUBLIC_IP
               Value: !Ref ClusterPublicIP
             - Name: INITIAL_API_TOKEN
               Value: !Ref InitialApiToken
@@ -639,33 +639,33 @@ Resources:
               Value: !Ref "AWS::Region"
             - Name: AWS_SECRET_ACCESS_KEY
               Value: !Ref AwsSecretAccessKey
-            - Name: MYSQL_HOST
+            - Name: BROWSERUP_MYSQL_HOST
               Value: !Join ['', ['mysql.', !Ref PrivateDnsNamespaceName]]
-            - Name: MYSQL_PASSWORD
+            - Name: BROWSERUP_MYSQL_PASSWORD
               Value: just_testing
             - Name: DATABASE_URL
               Value: !Join [ "", ["mysql2://browserup:just_testing@mysql.", !Ref PrivateDnsNamespaceName, "/browserup_production"]]
             - Name: GRID_SERVICE_URL
               Value: !Join [ "", ["http://grid-java-api.", !Ref PrivateDnsNamespaceName, ":8080/grid"]]
-            - Name: INFLUX_DB_HOST
+            - Name: BROWSERUP_INFLUX_DB_HOST
               Value: !Join [ "", ["influxdb.", !Ref PrivateDnsNamespaceName]]
-            - Name: INFLUX_DB_PORT
+            - Name: BROWSERUP_INFLUX_DB_PORT
               Value: 8086
-            - Name: INFLUX_DB_NAME
+            - Name: BROWSERUP_INFLUX_DB_NAME
               Value: browserup
-            - Name: INFLUX_DB_PASSWORD
+            - Name: BROWSERUP_INFLUX_DB_PASSWORD
               Value: just_testing
-            - Name: INFLUX_DB_USER
+            - Name: BROWSERUP_INFLUX_DB_USER
               Value: root
             - Name: INFLUX_SERVICE_URL
               Value: http://influxdb:8086
-            - Name: IS_CLOUD
+            - Name: BROWSERUP_IS_CLOUD
               Value: true
             - Name: RAILS_ENV
               Value: production
             - Name: RAILS_LOG_TO_STDOUT
               Value: true
-            - Name: RAILS_MASTER_KEY
+            - Name: BROWSERUP_RAILS_MASTER_KEY
               Value: 312ad97c276624b8069b61b73aa13a8a
             - Name: RAILS_SERVE_STATIC_FILES
               Value: true
@@ -673,23 +673,23 @@ Resources:
               Value: 20
             - Name: REDIS_URL
               Value: redis://redis:6379/1
-            - Name: S3_MINIO_HOST
+            - Name: BROWSERUP_S3_MINIO_HOST
               Value: !Join ['', ['minio.', !Ref PrivateDnsNamespaceName]]
-            - Name: S3_MINIO_PORT_1
+            - Name: BROWSERUP_S3_MINIO_PORT_1
               Value: 9000
-            - Name: S3_MINIO_PORT_2
+            - Name: BROWSERUP_S3_MINIO_PORT_2
               Value: 9001
-            - Name: S3_MINIO_ACCESS_KEY_ID
+            - Name: BROWSERUP_S3_MINIO_ACCESS_KEY_ID
               Value: !Ref S3MinioAccessKeyID
-            - Name: S3_MINIO_SECRET_ACCESS_KEY
+            - Name: BROWSERUP_S3_MINIO_SECRET_ACCESS_KEY
               Value: !Ref S3MinioSecretAccessKeyID
-            - Name: S3_MINIO_ARTIFACTS_BUCKET
+            - Name: BROWSERUP_S3_MINIO_ARTIFACTS_BUCKET
               Value: artifacts
-            - Name: WEBCONSOLE_PROTOCOL
+            - Name: BROWSERUP_WEBCONSOLE_PROTOCOL
               Value: !Ref WebconsoleProtocol
-            - Name: PRIVATE_DNS_NAMESPACE_NAME
+            - Name: BROWSERUP_PRIVATE_DNS_NAMESPACE_NAME
               Value: !Ref PrivateDnsNamespaceName
-            - Name: STANDARD_IMAGE_VERSION_TAG_OVERRIDE
+            - Name: BROWSERUP_STANDARD_IMAGE_VERSION_TAG_OVERRIDE
               Value: !Ref StandardImageVersionTag
           Essential: true
           LogConfiguration:
