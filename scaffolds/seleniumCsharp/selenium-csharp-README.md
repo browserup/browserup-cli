@@ -1,19 +1,35 @@
-﻿This project uses Selenium. Note that it does *not* use the NuGet package.
-The NuGet package works by copying the chromedriver into the project.
-That approach works, but it isn't cross-platform.
+﻿This project uses Selenium. 
 
-The browserup/standard container has /user/bin/chromium and /usr/bin/chromedriver already installed.
+Note that it does *not* use the NuGet package. 
+The NuGet package works by copying the chromedriver into the project. 
+That approach works, but it isn't cross-platform, and a goal for browserup is to be able to work across platforms.
 
-Your local install should have these items installed and available on the PATH.
+Although it is possible to not run your tests locally, and create a setup that only runs within the browserup containers,
+these instructions are oriented toward a setup which works both locally and in the browserup containers on the 
+assumption that you will be building and compiling locally, and then running the same code in the browserup containers.
+
+The browserup/standard container, which is build on debian, 
+has /user/bin/chromium and /usr/bin/chromedriver already installed.
+
+Requirements:
+* chromium installed and on the PATH (for local testing)
+* chromedriver installed and on the PATH (for local testing)
+* dotnet 7.0 or later
+* BrowserUP installed
+* Docker for local testing / verification
+
+To create a solution that works both locally, and 
+in BrowserUp, your local install should have chromium and chromedriver installed and available on the PATH.
+
 
 # Building:
 
- Before you can use this example for a test, you must build it:
+Before you can use this example for a test, you must build it. 
 
  ```
+ cd seleniumCsharp
  dotnet build --configuration Release
  ```
-
 
 # Verifying
 
