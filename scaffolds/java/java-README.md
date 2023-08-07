@@ -1,5 +1,10 @@
 To compile:
 
+Requirements:
+* Java 11 or higher on the PATH
+* Maven
+
+
 ```bash
 mvn compile
 ```
