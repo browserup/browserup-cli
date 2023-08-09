@@ -671,7 +671,7 @@ Resources:
               Value: true
             - Name: RAILS_MAX_THREADS
               Value: 20
-            - Name: REDIS_URL
+            - Name: BROWSERUP_REDIS_URL
               Value: redis://redis:6379/1
             - Name: BROWSERUP_S3_MINIO_HOST
               Value: !Join ['', ['minio.', !Ref PrivateDnsNamespaceName]]
