@@ -9,9 +9,9 @@
 ----
 
 Use your existing code to power your load tests, so you **d**on't **r**epeat **y**ourself.
-
-<div align="center">
-  <table class="center">
+<br>
+<div align="">
+  <table class="">
   <tr><th colspan="2">Load test with your own:</th></tr>
   <tr><td><b>Playwright</b> </td><td>Javascript, Python, C#, etc (Page objects, too)</td></tr>
   <tr><td><b>Selenium</b></td><td>JavaScript, Java, Python, Ruby, C#(Page objects, too)</td></tr>
@@ -21,7 +21,7 @@ Use your existing code to power your load tests, so you **d**on't **r**epeat **y
   <tr><td><b>A Mobile App or IOT App</b></td><td>Run it, let requests happen naturally</td></tr>
   </table>
 </div>
-
+<p/>
 These items have easy, out-of-the box, support, but you can create a custom image with
 almost anything that you want--any language, framework, etc!
 
