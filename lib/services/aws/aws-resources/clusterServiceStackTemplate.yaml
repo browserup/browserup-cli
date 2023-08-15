@@ -16,6 +16,10 @@ Parameters:
     Type: String
     Description: >
       S3 minio access key id
+  BrowserupS3MinioPort1:
+    Type: String
+  BrowserupS3MinioPort2:
+    Type: String
   S3MinioSecretAccessKeyID:
     Type: String
     Description: >
@@ -407,9 +411,9 @@ Resources:
         - Image: docker.io/rabbitmq:3-management
           Name: rabbitmq
           Environment:
-            - Name: BROWSERUP_RABBITMQ_DEFAULT_PASS
+            - Name: RABBITMQ_DEFAULT_PASS
               Value: just_testing
-            - Name: BROWSERUP_RABBITMQ_DEFAULT_USER
+            - Name: RABBITMQ_DEFAULT_USER
               Value: browserup
           Essential: true
           LogConfiguration:
@@ -438,7 +442,7 @@ Resources:
         - Image: docker.io/zookeeper:3.8.1
           Name: zookeeper
           Environment:
-            - Name: BROWSERUP_ZOO_MAX_CLIENT_CNXNS
+            - Name: ZOO_MAX_CLIENT_CNXNS
               Value: 500
           Essential: true
           LogConfiguration:
@@ -504,7 +508,7 @@ Resources:
           Environment:
             - Name: MYSQL_DATABASE
               Value: browserup_production
-            - Name: BROWSERUP_MYSQL_PASSWORD
+            - Name: MYSQL_PASSWORD
               Value: just_testing
             - Name: MYSQL_RANDOM_ROOT_PASSWORD
               Value: yes
@@ -645,7 +649,7 @@ Resources:
               Value: just_testing
             - Name: DATABASE_URL
               Value: !Join [ "", ["mysql2://browserup:just_testing@mysql.", !Ref PrivateDnsNamespaceName, "/browserup_production"]]
-            - Name: GRID_SERVICE_URL
+            - Name: BROWSERUP_GRID_SERVICE_URL
               Value: !Join [ "", ["http://grid-java-api.", !Ref PrivateDnsNamespaceName, ":8080/grid"]]
             - Name: BROWSERUP_INFLUX_DB_HOST
               Value: !Join [ "", ["influxdb.", !Ref PrivateDnsNamespaceName]]
