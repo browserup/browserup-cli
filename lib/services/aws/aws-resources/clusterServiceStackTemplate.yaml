@@ -293,7 +293,7 @@ Resources:
             - Name: BROWSERUP_S3_MINIO_SECRET_ACCESS_KEY
               Value: !Ref S3MinioSecretAccessKeyID
             - Name: BROWSERUP_S3_MINIO_HOST_PORT_1
-              Value: 9000
+              Value: !Ref S3MinioIngressPort
             - Name: BROWSERUP_S3_MINIO_ARTIFACTS_BUCKET
               Value: artifacts
             - Name: BROWSERUP_MINIONS_KEY_PAIR_NAME
@@ -364,7 +364,7 @@ Resources:
             - Name: BROWSERUP_S3_MINIO_SECRET_ACCESS_KEY
               Value: !Ref S3MinioSecretAccessKeyID
             - Name: BROWSERUP_S3_MINIO_HOST_PORT_1
-              Value: 9000
+              Value: !Ref S3MinioIngressPort
             - Name: BROWSERUP_S3_MINIO_ARTIFACTS_BUCKET
               Value: artifacts
             - Name: EXECUTION_ROLE_ARN
@@ -695,6 +695,8 @@ Resources:
               Value: !Ref PrivateDnsNamespaceName
             - Name: BROWSERUP_STANDARD_IMAGE_VERSION_TAG_OVERRIDE
               Value: !Ref StandardImageVersionTag
+            - Name: BROWSERUP_S3_MINIO_HOST_PORT_1
+              Value: !Ref S3MinioIngressPort
           Essential: true
           LogConfiguration:
             LogDriver: fluentd
