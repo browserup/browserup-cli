@@ -185,6 +185,7 @@ services:
       - INITIAL_API_TOKEN=${INITIAL_API_TOKEN}
       - RAILS_LOG_TO_STDOUT=true
       - RAILS_SERVE_STATIC_FILES=true
+      - BROWSERUP_S3_MINIO_HOST_PORT_1=${BROWSERUP_S3_MINIO_PORT_1}
     depends_on:
       - mysql
       - influxdb

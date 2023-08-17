@@ -43,9 +43,6 @@
           "offset": {
             "type": "integer"
           },
-          "type": {
-            "type": "string"
-          },
           "range": {
             "type": "object",
             "properties": {

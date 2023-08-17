@@ -12,9 +12,9 @@ scenario:
 reports:
   - name: 'UrlResponseTime'
     title: 'URL 90th Response Time (SLA)'
-    type: 'line'
     cards:
-      - metrics:
+      - type: 'line'
+        metrics:
         - metric: 'urls.response_ms.avg'
           check:
             '<': 2000
