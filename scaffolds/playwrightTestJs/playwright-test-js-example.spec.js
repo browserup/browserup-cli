@@ -12,8 +12,13 @@ test('has title', async ({ }) => {
         }
     });
     let page = await browser.newPage();
-    await page.goto('http://playground.browserup.com/');
 
+    const thinkTimeStr = process.env.THINK_TIME;
+    const thinkTimeMs = parseInt(thinkTimeStr, 10) * 1000;
+    const sleep = promisify(setTimeout);
+
+    await page.goto('http://playground.browserup.com/');
+    sleep(thinkTimeMs);
     await expect(page).toHaveTitle(/Playground/);
 });
 

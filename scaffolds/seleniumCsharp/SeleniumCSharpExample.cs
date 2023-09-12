@@ -8,8 +8,8 @@ class SeleniumCSharpExample
 
     static void Main(string[] args)
     {
-        string? think = Environment.GetEnvironmentVariable("think_time");
-        int sleepTime = (think != null) ? int.Parse(think) : 10000;
+        int thinkTime = int.TryParse(Environment.GetEnvironmentVariable("THINK_TIME"), out thinkTime) ? thinkTime : 30;
+        int thinkTimeMs = thinkTime * 1000;
 
         var options = new ChromeOptions();
         options.AddArgument("--headless");
@@ -26,7 +26,7 @@ class SeleniumCSharpExample
         Thread.Sleep(sleepTime);
 
         driver.FindElement(By.LinkText("Web Playground")).Click();
-        Thread.Sleep(sleepTime);
+        Thread.Sleep(thinkTimeMs);
 
         Trace.Assert(driver.PageSource.Contains("Toys"));
 

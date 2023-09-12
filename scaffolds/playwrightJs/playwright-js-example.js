@@ -14,10 +14,15 @@ const playwright = require("playwright");
         executablePath: "/usr/bin/chromium",
         headless: true
     });
+    const thinkTimeStr = process.env.THINK_TIME;
+    const thinkTimeMs = parseInt(thinkTimeStr, 10) * 1000;
+    const sleep = promisify(setTimeout);
+
     const page = await browser.newPage();
     await page.goto("http://playground.browserup.com/");
 
     const html = await page.content();
     console.log(html);
+    sleep(thinkTimeMs);
     await browser.close();
 })();

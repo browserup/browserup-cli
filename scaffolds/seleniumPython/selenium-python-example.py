@@ -1,7 +1,11 @@
 #!/usr/bin/env python3
 
+import time
+import os
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+
+think_time = int(os.environ.get("THINK_TIME", 10))
 options = Options()
 
 options.add_argument("--no-sandbox")
@@ -16,4 +20,6 @@ driver = webdriver.Chrome(options=options)
 driver.get("http://www.browserup.com")
 print(driver.title)
 assert "BrowserUp" in driver.title
+time.sleep(think_time)
+
 driver.close()
