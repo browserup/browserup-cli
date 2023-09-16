@@ -1,6 +1,7 @@
 #!/usr/bin/node
 
 const { remote } = require("webdriverio");
+const { promisify } = require('util.promisify');
 
 (async () => {
     const browser = await remote({

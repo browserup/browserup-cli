@@ -1,6 +1,7 @@
 // @ts-check
 const { test, expect } = require('@playwright/test');
 const { chromium } = require('playwright');
+const { promisify } = require('util.promisify');
 
 test('has title', async ({ }) => {
     let browser = await chromium.launch({

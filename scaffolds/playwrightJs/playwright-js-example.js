@@ -1,4 +1,5 @@
 const playwright = require("playwright");
+const { promisify } = require('util.promisify');
 
 (async () => {
     // important note: The standard playwright installation instructions will try to download
