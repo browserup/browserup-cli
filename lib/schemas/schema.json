@@ -217,7 +217,7 @@
           }
         }
       },
-      "required": ["name", "total_users"]
+      "required": ["name", "total_users", "profiles"]
     },
     "settings": {
       "type": "object",
@@ -239,5 +239,6 @@
         }
       }
     }
-  }
+  },
+  "required": ["scenario"]
 }
