@@ -1,0 +1,27 @@
+scenario:
+  name: GiveMeABetterName
+  total_users: 10
+  profiles:
+    - name: "PostManExample"
+      command: "newman run --delay-request $THINK_TIME ./postman/postman-example.json"
+      think_time: "30s"
+      artifact_dir: "."
+      iteration_delay: "10s"
+      allocation: "100%"             
+  stop_after: 15m
+  ramp:
+    - ramp_to: 100%
+      over: 5m
+
+reports:
+  - name: 'UrlResponseTime'
+    title: 'URL 90th Response Time (SLA)'
+    cards:
+      - type: 'line'
+        metrics:
+        - metric: 'urls.response_ms.avg'
+          check:
+            '<': 2000
+
+settings:
+    cluster_type: local
