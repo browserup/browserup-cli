@@ -475,7 +475,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         - Name: grafana
-          Image: grafana/grafana:latest
+          Image: grafana/grafana:10.2.0
           MountPoints:
             - ContainerPath: /etc/grafana/provisioning/datasources/grafana-datasource.yaml
               SourceVolume: grafana-datasource-volume
@@ -567,7 +567,7 @@ Resources:
     Properties:
       ContainerDefinitions:
         # Fluent Bit
-        - Image: fluent/fluent-bit:latest
+        - Image: fluent/fluent-bit:2.1.10
           Name: fluentbit
           Essential: true
           Environment:
@@ -599,7 +599,7 @@ Resources:
     Type: AWS::ECS::TaskDefinition
     Properties:
       ContainerDefinitions:
-        - Image: grafana/loki:latest
+        - Image: grafana/loki:2.8.6
           Name: loki
           Essential: true
           LogConfiguration:
