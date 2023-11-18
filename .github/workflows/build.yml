@@ -22,9 +22,11 @@ jobs:
           node-version: '18.x'
           registry-url: 'https://registry.npmjs.org'
 
-      - uses: gradle/wrapper-validation-action@v1
-
       - run: npm ci
+
+      - run: npm test unit
+
+      - run: npm test int
 
       - run: npm publish
         if: contains(github.ref, 'release/') && github.event_name != 'pull_request'
