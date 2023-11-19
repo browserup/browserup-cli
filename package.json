@@ -18,7 +18,7 @@
     "email": "support@browserup.com"
   },
   "scripts": {
-    "test": "jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
     "prepare": "node prepare.mjs"
   },
   "keywords": [
@@ -52,8 +52,8 @@
       "node"
     ],
     "testMatch": [
-      ",<rootDir>/tests/?(*.)+(spec|test).[jt]s?(x)",
-      "<rootDir>/tests/?(*.)+(spec|test).mjs"
+      ",<rootDir>/tests/**/?(*.)+(spec|test).[jt]s?(x)",
+      "<rootDir>/tests/**/?(*.)+(spec|test).mjs"
     ],
     "testPathIgnorePatterns": [
       "/node_modules/",
