@@ -23,7 +23,7 @@ class SeleniumCSharpExample
         IWebDriver driver = new ChromeDriver(service, options );
         
         driver.Url = "http://playground.browserup.com";
-        Thread.Sleep(sleepTime);
+        Thread.Sleep(thinkTime);
 
         driver.FindElement(By.LinkText("Web Playground")).Click();
         Thread.Sleep(thinkTimeMs);
