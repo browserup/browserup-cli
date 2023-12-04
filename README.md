@@ -64,8 +64,10 @@ For installations where the local cluster is not used, like CI/CD, you can skip 
 
 #### Local Cluster
 * Docker Installed and Running (make sure it is current)
-* Mac Arm64 (M1/M2) or AMD64 or Linux (Windows not yet supported)
+* Mac Arm64 (M1/M2/M3) or Linux AMD64 or Windows 10+
 * 32 GB Ram or more Recommended
+* 8 CPU Cores or more Recommended
+
 #### Cloud Cluster
 * Amazon AWS account
 * Local Mac Arm64 (M1/M2) or AMD64 or Linux to operate the BrowserUp Command line Util
