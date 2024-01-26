@@ -47,6 +47,7 @@ services:
     image: docker.io/browserup/grid-java-api:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
+      - //wsl$/docker-desktop-data:/var/lib/docker/containers
     ports:
       - "${BROWSERUP_GRID_JAVA_API_PORT}:8080"
     restart: on-failure
@@ -94,9 +95,9 @@ services:
       - rabbitmq
       - fluentbit
     logging:
-      driver: "fluentd"
+      driver: "json-file"
       options:
-        fluentd-address: "localhost:24224"
+        tag: "{{.Name}}"
 
   grid-java-coordinator:
     container_name: browserup_grid-java-coordinator
@@ -143,10 +144,6 @@ services:
       - rabbitmq
       - grid-java-api
       - fluentbit
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
 
   webconsole:
     container_name: browserup_webconsole
@@ -193,10 +190,6 @@ services:
       - redis
       - minio
       - fluentbit
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
     volumes:
       - ./containers:/var/lib/containers
 
@@ -207,10 +200,6 @@ services:
     depends_on:
       - influxdb
       - fluentbit
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
 
   influxdb:
     container_name: browserup_influxdb
@@ -229,10 +218,6 @@ services:
       - INFLUXDB_HTTP_LOG_ENABLED=false
     depends_on:
       - fluentbit
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
 
   mysql:
     container_name: browserup_mysql
@@ -250,10 +235,6 @@ services:
       - MYSQL_PASSWORD=${BROWSERUP_MYSQL_PASSWORD}
     depends_on:
       - fluentbit
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
 
   redis:
     container_name: browserup_redis
@@ -262,10 +243,6 @@ services:
       - "${BROWSERUP_REDIS_PORT}:6379"
     depends_on:
       - fluentbit
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
 
   rabbitmq:
     container_name: browserup_rabbitmq
@@ -286,10 +263,6 @@ services:
       retries: 3
     depends_on:
       - fluentbit
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
 
   zookeeper:
     container_name: browserup_zookeeper
@@ -308,10 +281,6 @@ services:
       - fluentbit
       - loki
       - grafana
-    logging:
-      driver: "fluentd"
-      options:
-        fluentd-address: "localhost:24224"
 
   minio:
     container_name: browserup_minio
@@ -336,7 +305,7 @@ services:
 
   # router
   fluentbit:
-    image: fluent/fluent-bit:2.1.10
+    image: fluent/fluent-bit:2.2.2
     depends_on:
       - loki
     environment:
@@ -347,6 +316,7 @@ services:
       - "2020:2020"
     volumes:
       - ./resources/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
+      - ./resources/parsers.conf:/fluent-bit/etc/parsers.conf
 
   # storage
   loki:
