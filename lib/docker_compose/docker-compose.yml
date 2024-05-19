@@ -47,7 +47,6 @@ services:
     image: docker.io/browserup/grid-java-api:latest
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
-      - //wsl$/docker-desktop-data:/var/lib/docker/containers
     ports:
       - "${BROWSERUP_GRID_JAVA_API_PORT}:8080"
     restart: on-failure
@@ -95,9 +94,9 @@ services:
       - rabbitmq
       - fluentbit
     logging:
-      driver: "json-file"
+      driver: "fluentd"
       options:
-        tag: "{{.Name}}"
+        fluentd-address: "localhost:24224"
 
   grid-java-coordinator:
     container_name: browserup_grid-java-coordinator
@@ -144,6 +143,34 @@ services:
       - rabbitmq
       - grid-java-api
       - fluentbit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
+
+  grid-java-observer:
+    container_name: browserup_grid-java-observer
+    image: docker.io/browserup/observer:latest
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    restart: on-failure
+    environment:
+      - BROWSERUP_RABBITMQ_HOST=${BROWSERUP_RABBITMQ_HOST}
+      - BROWSERUP_RABBITMQ_DEFAULT_USER=browserup
+      - BROWSERUP_RABBITMQ_DEFAULT_PASS=${BROWSERUP_RABBITMQ_DEFAULT_PASS}
+      - BROWSERUP_RABBITMQ_QUEUE_PORT=5672
+      - BROWSERUP_ZOOKEEPER_HOST=${BROWSERUP_ZOOKEEPER_HOST}
+      - BROWSERUP_ZOOKEEPER_CLIENT_PORT=2181
+      - BROWSERUP_IS_CLOUD=false
+    depends_on:
+      - zookeeper
+      - rabbitmq
+      - grid-java-api
+      - fluentbit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   webconsole:
     container_name: browserup_webconsole
@@ -168,6 +195,7 @@ services:
       - BROWSERUP_INFLUX_DB_USER=browserup
       - BROWSERUP_INFLUX_DB_PASSWORD=${BROWSERUP_INFLUX_DB_PASSWORD}
       - BROWSERUP_GRID_SERVICE_URL=http://${BROWSERUP_GRID_JAVA_API_HOST}:8080/grid
+      - BROWSERUP_LOKI_SERVICE_URL=http://${BROWSERUP_LOKI_HOST}:3100
       - BROWSERUP_IS_CLOUD=false
       - BROWSERUP_REDIS_URL=redis://${BROWSERUP_REDIS_HOST}:6379/1
       - BROWSERUP_S3_MINIO_ACCESS_KEY_ID=${BROWSERUP_S3_MINIO_ACCESS_KEY_ID}
@@ -192,6 +220,10 @@ services:
       - fluentbit
     volumes:
       - ./containers:/var/lib/containers
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   chronograf:
     image: chronograf:1.7.16
@@ -200,6 +232,10 @@ services:
     depends_on:
       - influxdb
       - fluentbit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   influxdb:
     container_name: browserup_influxdb
@@ -218,6 +254,10 @@ services:
       - INFLUXDB_HTTP_LOG_ENABLED=false
     depends_on:
       - fluentbit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   mysql:
     container_name: browserup_mysql
@@ -235,6 +275,10 @@ services:
       - MYSQL_PASSWORD=${BROWSERUP_MYSQL_PASSWORD}
     depends_on:
       - fluentbit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   redis:
     container_name: browserup_redis
@@ -243,6 +287,10 @@ services:
       - "${BROWSERUP_REDIS_PORT}:6379"
     depends_on:
       - fluentbit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   rabbitmq:
     container_name: browserup_rabbitmq
@@ -263,6 +311,10 @@ services:
       retries: 3
     depends_on:
       - fluentbit
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   zookeeper:
     container_name: browserup_zookeeper
@@ -281,6 +333,10 @@ services:
       - fluentbit
       - loki
       - grafana
+    logging:
+      driver: "fluentd"
+      options:
+        fluentd-address: "localhost:24224"
 
   minio:
     container_name: browserup_minio
@@ -305,7 +361,7 @@ services:
 
   # router
   fluentbit:
-    image: fluent/fluent-bit:2.2.2
+    image: fluent/fluent-bit:3.0.3-debug
     depends_on:
       - loki
     environment:
@@ -313,14 +369,16 @@ services:
     ports:
       - "24224:24224"
       - "24224:24224/udp"
-      - "2020:2020"
+      - "24020:2020"
+      - "24888:8888"
     volumes:
-      - ./resources/fluent-bit.conf:/fluent-bit/etc/fluent-bit.conf
-      - ./resources/parsers.conf:/fluent-bit/etc/parsers.conf
+      - ./resources/fluent-bit:/fluent-bit/etc
 
   # storage
   loki:
     image: grafana/loki:2.8.6
+    ports:
+      - "24310:3100"
     volumes:
       - ./resources/loki-config.yaml:/etc/loki/local-config.yaml
 
