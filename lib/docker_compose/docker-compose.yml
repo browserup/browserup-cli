@@ -361,7 +361,7 @@ services:
 
   # router
   fluentbit:
-    image: fluent/fluent-bit:3.0.3-debug
+    image: fluent/fluent-bit:3.0.3
     depends_on:
       - loki
     environment:
