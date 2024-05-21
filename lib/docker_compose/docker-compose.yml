@@ -367,9 +367,8 @@ services:
     environment:
       - LOG_PATH=/tmp
     ports:
-      - "24224:24224"
-      - "24224:24224/udp"
       - "24020:2020"
+      - "24224:8889"
       - "24888:8888"
     volumes:
       - ./resources/fluent-bit:/fluent-bit/etc
