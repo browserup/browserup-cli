@@ -218,8 +218,6 @@ services:
       - redis
       - minio
       - fluentbit
-    volumes:
-      - ./containers:/var/lib/containers
     logging:
       driver: "fluentd"
       options:
