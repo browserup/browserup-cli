@@ -1,0 +1,38 @@
+syntax = "proto3";
+
+package com.browserup.common.metric.dto;
+
+message Step {
+	int64 start_ts = 1;
+	int64 end_ts = 2;
+	string href = 3;
+	string step = 4;
+	string title = 5;
+	int32 dom_interactive_ms = 6;
+	int32 dns_ms = 7;
+	int32 duration_ms = 8;
+	int32 first_input_delay_ms = 9;
+	int32 first_contentful_paint_ms = 10;
+	int32 first_contentful_paint_size = 11;
+	int32 first_paint_ms = 12;
+	int32 largest_contentful_paint_ms = 13;
+	int32 largest_contentful_paint_size = 14;
+	int32 on_content_load_ms = 15;
+	int32 on_load_ms = 16;
+	int32 ssl_ms = 17;
+	int32 time_to_first_byte_ms = 18;
+	double cumulative_layout_shift = 19;
+	uint32 iteration = 20;
+	string region = 21;
+	string profile = 22;
+	string image = 23;
+	uint32 vu_id = 24;
+	uint32 run_id = 25;
+	uint32 workspace_id = 26;
+	uint32 scenario_id = 27;
+	uint32 profile_id = 28;
+}
+
+message StepsList {
+  repeated Step steps = 1;
+}

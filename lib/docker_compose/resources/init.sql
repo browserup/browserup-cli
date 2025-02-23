@@ -1,5 +1,0 @@
-CREATE DATABASE browserup_test;
-
-GRANT ALL PRIVILEGES ON browserup_test.* TO 'browserup'@'%' WITH GRANT OPTION;
-
-FLUSH PRIVILEGES;

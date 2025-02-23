@@ -5,13 +5,26 @@ scrape_configs:
   - job_name: 'zookeeper'
     static_configs:
       - targets: ['zookeeper:7000']
-  - job_name: 'coordinator'
+
+  - job_name: 'grid-java-coordinator'
     metrics_path: '/coordinator/prometheus'
     scrape_interval: 5s
     static_configs:
       - targets: ['grid-java-coordinator:8081']
+
   - job_name: 'grid'
     metrics_path: '/grid/prometheus'
     scrape_interval: 5s
     static_configs:
       - targets: ['grid-java-api:8080']
+
+  - job_name: 'grid-java-observer'
+    metrics_path: '/grid-observer/prometheus'
+    scrape_interval: 5s
+    static_configs:
+      - targets: ['grid-java-observer:8082']
+
+  - job_name: 'clickhouse'
+    scrape_interval: 2s
+    static_configs:
+      - targets: ['clickhouse:9363']

@@ -1,0 +1,15 @@
+syntax = "proto3";
+
+package com.browserup.common.metric.dto;
+
+message Run_info {
+	int64 start_ts = 1;
+	int64 end_ts = 2;
+	string region = 3;
+	uint32 run_id = 4;
+	uint32 workspace_id = 5;
+}
+
+message Run_infosList {
+  repeated Run_info run_infos = 1;
+}
