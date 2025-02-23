@@ -218,13 +218,9 @@ services:
       - ./resources/click-house/schemas/verifications.proto:/var/lib/clickhouse/format_schemas/verifications.proto
       - ./resources/click-house/schemas/vu_logs.proto:/var/lib/clickhouse/format_schemas/vu_logs.proto
       - ./resources/click-house/schemas/vu_statuses.proto:/var/lib/clickhouse/format_schemas/vu_statuses.proto
-    ports:
-      - '8123:8123'
-      - '9000:9000'
     depends_on:
       - zookeeper
       - nats
-      - nats-1
       - fluentbit
     logging:
       driver: "fluentd"
@@ -237,8 +233,6 @@ services:
     hostname: zookeeper
     volumes:
       - ./resources/click-house/keeper-config.xml:/etc/clickhouse-keeper/keeper_config.xml
-    ports:
-      - '9181:9181'
     depends_on:
       - fluentbit
     logging:
@@ -248,20 +242,9 @@ services:
 
   nats:
     image: nats
-    ports:
-      - "6222:6222"
-      - "4222:4222"
-      - "8222:8222"
     volumes:
       - ./resources/nats/nats-server.conf:/etc/nats/nats-server.conf
     command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --http_port 8222 -c /etc/nats/nats-server.conf"
-
-  nats-1:
-    image: nats
-    volumes:
-      - ./resources/nats/nats-server.conf:/etc/nats/nats-server.conf
-    command: "--cluster_name NATS --cluster nats://0.0.0.0:6222 --routes=nats://nats:6222 -c /etc/nats/nats-server.conf"
-    depends_on: ["nats"]
 
   rabbitmq:
     container_name: browserup_rabbitmq
@@ -315,10 +298,6 @@ services:
       - loki
     environment:
       - LOG_PATH=/tmp
-    ports:
-      - "24020:2020"
-      - "24224:8889"
-      - "24888:8888"
     volumes:
       - ./resources/fluent-bit:/fluent-bit/etc
 
