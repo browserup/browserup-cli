@@ -327,6 +327,8 @@ Resources:
               Value: !Ref ClusterVpcId
             - Name: BROWSERUP_CLUSTER_NAME
               Value: !Ref ClusterName
+            - Name: BROWSERUP_OBSERVER_VERSION
+              Value: !Ref ServicesImageTag
             - Name: EC2_INSTANCE_FAMILY
               Value: c5
             - Name: BROWSERUP_INFLUX_DB_HOST
@@ -359,6 +361,10 @@ Resources:
               Value: 9000
             - Name: BROWSERUP_S3_MINIO_PORT_2
               Value: 9001
+            - Name: BROWSERUP_LOKI_HOST
+              Value: !Join ['', ['loki.', !Ref PrivateDnsNamespaceName]]
+            - Name: BROWSERUP_LOKI_PORT
+              Value: 3100
             - Name: BROWSERUP_S3_MINIO_ACCESS_KEY_ID
               Value: !Ref S3MinioAccessKeyID
             - Name: BROWSERUP_S3_MINIO_SECRET_ACCESS_KEY

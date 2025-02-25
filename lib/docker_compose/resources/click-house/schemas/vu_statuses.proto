@@ -1,0 +1,23 @@
+syntax = "proto3";
+
+package com.browserup.common.metric.dto;
+
+message Vu_status {
+	int64 start_ts = 1;
+	int64 end_ts = 2;
+	uint32 iteration = 3;
+	string status = 4;
+	string region = 5;
+	string profile = 6;
+	string image = 7;
+	string step = 8;
+	uint32 vu_id = 9;
+	uint32 run_id = 10;
+	uint32 workspace_id = 11;
+	uint32 scenario_id = 12;
+	uint32 profile_id = 13;
+}
+
+message Vu_statusesList {
+  repeated Vu_status vu_statuses = 1;
+}

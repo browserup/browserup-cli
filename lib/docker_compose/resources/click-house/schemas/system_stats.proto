@@ -1,0 +1,26 @@
+syntax = "proto3";
+
+package com.browserup.common.metric.dto;
+
+message System_stat {
+	int64 start_ts = 1;
+	int32 bytes_received = 2;
+	int32 bytes_sent = 3;
+	uint32 cpu_total_usage = 4;
+	uint32 dropped_packets_received = 5;
+	uint32 dropped_packets_sent = 6;
+	uint32 memory_percentage = 7;
+	uint32 memory_usage = 8;
+	int64 host_available_memory = 9;
+	uint32 packets_received = 10;
+	uint32 packets_sent = 11;
+	uint32 run_id = 12;
+	uint32 workspace_id = 13;
+	uint32 scenario_id = 14;
+	string region = 15;
+	string host = 16;
+}
+
+message System_statsList {
+	repeated System_stat system_stats = 1;
+}

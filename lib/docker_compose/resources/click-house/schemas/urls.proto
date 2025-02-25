@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package com.browserup.common.metric.dto;
+
+message Url {
+	string url = 1;
+	int64 start_ts = 2;
+	int64 end_ts = 3;
+	uint32 run_id = 4;
+	string profile = 5;
+	string step = 6;
+	string region = 7;
+	string image = 8;
+	uint32 vu_id = 9;
+	string trace_id = 10;
+	string trace_parent_id = 11;
+	uint32 workspace_id = 12;
+	uint32 scenario_id = 13;
+	uint32 profile_id = 14;
+	int32 status_code = 15;
+	string method = 16;
+	string content_type = 17;
+	int32 ssl_ms = 18;
+	int32 blocked_ms = 19;
+	int32 connect_ms = 20;
+	int32 dns_ms = 21;
+	int32 wait_ms = 22;
+	int32 receive_ms = 23;
+	int32 response_ms = 24;
+	int32 send_ms = 25;
+	int32 ws_messages_rcvd = 26;
+	int32 ws_messages_sent = 27;
+	int32 ws_bytes_sent = 28;
+	int32 ws_bytes_rcvd = 29;
+	int32 video_buffered_percent = 30;
+	int32 video_stall_count = 31;
+	int32 video_decoded_byte_count = 32;
+	int32 video_waiting_count = 33;
+	int32 video_error_count = 34;
+	int32 video_dropped_frames = 35;
+	int32 video_total_frames = 36;
+	int32 video_audio_bytes_decoded = 37;
+	int32 bytes_received_size = 38;
+	int32 bytes_sent_size = 39;
+	int32 request_body_size = 40;
+	int32 response_body_size = 41;
+	int32 request_headers_size = 42;
+	int32 response_headers_size = 43;
+	string content = 44;
+	string headers = 45;
+	uint32 iteration = 46;
+}
+
+message UrlsList {
+  repeated Url urls = 1;
+}

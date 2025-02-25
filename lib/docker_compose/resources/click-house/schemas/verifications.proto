@@ -1,0 +1,18 @@
+syntax = "proto3";
+
+package com.browserup.common.metric.dto;
+
+message Verification {
+	uint32 workspace_id = 1;
+	uint32 scenario_id = 2;
+	uint32 run_id = 3;
+	string name = 4;
+	uint32 result = 5;
+	string type = 6;
+	string scenario_name = 7;
+	int64 timestamp = 8;
+}
+
+message VerificationsList {
+  repeated Verification verifications = 1;
+}
