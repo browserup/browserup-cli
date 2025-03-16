@@ -3,20 +3,17 @@ syntax = "proto3";
 package com.browserup.common.metric.dto;
 
 message Vu_log {
-	int64 start_ts = 1;
-	int64 end_ts = 2;
-	string log_text = 3;
-	uint32 iteration = 4;
-	string status = 5;
-	string region = 6;
-	string profile = 7;
-	string image = 8;
-	string step = 9;
-	uint32 vu_id = 10;
-	uint32 run_id = 11;
-	uint32 workspace_id = 12;
-	uint32 scenario_id = 13;
-	uint32 profile_id = 14;
+	string log_text = 1;
+	uint32 iteration = 2;
+	string region = 3;
+	string profile = 4;
+	string image = 5;
+	string step = 6;
+	uint32 vu_id = 7;
+	uint32 run_id = 8;
+	uint32 workspace_id = 9;
+	uint32 scenario_id = 10;
+	uint32 profile_id = 11;
 }
 
 message Vu_logsList {

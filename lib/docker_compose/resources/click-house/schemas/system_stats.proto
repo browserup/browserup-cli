@@ -22,5 +22,5 @@ message System_stat {
 }
 
 message System_statsList {
-	repeated System_stat system_stats = 1;
+  repeated System_stat system_stats = 1;
 }

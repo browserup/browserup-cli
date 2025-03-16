@@ -204,7 +204,7 @@ services:
         fluentd-address: "localhost:24224"
 
   clickhouse:
-    image: 'clickhouse/clickhouse-server:25.1'
+    image: 'clickhouse/clickhouse-server:latest'
     container_name: clickhouse
     hostname: clickhouse
     volumes:
@@ -272,7 +272,7 @@ services:
 
   minio:
     container_name: browserup_minio
-    image: quay.io/minio/minio:RELEASE.2022-01-08T03-11-54Z
+    image: quay.io/minio/minio:RELEASE.2025-02-28T09-55-16Z
     command: server --console-address ":9001" /data
     ports:
       - "${BROWSERUP_S3_MINIO_PORT_1}:9000"
@@ -298,6 +298,8 @@ services:
       - loki
     environment:
       - LOG_PATH=/tmp
+    ports:
+      - "24224:8889"
     volumes:
       - ./resources/fluent-bit:/fluent-bit/etc
 
